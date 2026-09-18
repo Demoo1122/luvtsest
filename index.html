@@ -1,0 +1,1193 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-page-node-id="ovazSOSEB3exkJBOD6fFOQ">
+<head data-page-node-id="hPyPXmHj4gD6DNLBewuXol">
+<meta charset="UTF-8" data-page-node-id="Mnzq7Tri8r0EOZNDXanY8W">
+<meta name="viewport" content="width=device-width, initial-scale=1.0" data-page-node-id="92UcQiKVowzeVVBun0EBB8">
+<title>心动动物园 · 萌宠恋爱人格测试</title>
+<style>
+  :root{
+    --bg1:#FFF6EF; --bg2:#FFE9EC; --bg3:#FDE7EF;
+    --rose:#E8748C; --rose-deep:#D9536F; --rose-soft:#FDF0F3;
+    --ink:#4A3B42; --sub:#9A8890; --line:#F3E3E7;
+    --card:#FFFFFF; --radius:22px;
+    --dog:#D98E4A; --cat:#9C8FC6; --deer:#CE8AA5; --fox:#E8853C;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:"PingFang SC","Microsoft YaHei","Hiragino Sans GB","Source Han Sans SC",sans-serif;
+    color:var(--ink);
+    background:linear-gradient(165deg,var(--bg1) 0%,var(--bg2) 55%,var(--bg3) 100%);
+    min-height:100vh;
+    line-height:1.75;
+    overflow-x:hidden;
+  }
+  /* ---------- 背景装饰 ---------- */
+  .blob{position:fixed;border-radius:50%;filter:blur(70px);opacity:.5;pointer-events:none;z-index:0}
+  .blob.b1{width:340px;height:340px;background:#FFD9E2;top:-100px;right:-80px}
+  .blob.b2{width:300px;height:300px;background:#FFE6C9;bottom:-90px;left:-70px}
+  .heart-float{position:fixed;color:#F5B7C4;opacity:.35;pointer-events:none;z-index:0;animation:floatUp 12s linear infinite}
+  @keyframes floatUp{
+    0%{transform:translateY(105vh) rotate(0deg);opacity:0}
+    12%{opacity:.35}
+    88%{opacity:.3}
+    100%{transform:translateY(-12vh) rotate(28deg);opacity:0}
+  }
+  .wrap{position:relative;z-index:1;max-width:660px;margin:0 auto;padding:28px 18px 48px}
+  /* ---------- 通用 ---------- */
+  .screen{display:none}
+  .screen.active{display:block;animation:fadeUp .5s ease both}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+  .card{
+    background:var(--card);border-radius:var(--radius);
+    box-shadow:0 14px 44px rgba(217,83,111,.10),0 2px 10px rgba(74,59,66,.05);
+    padding:30px 26px;
+  }
+  .btn{
+    display:inline-block;border:none;cursor:pointer;font-family:inherit;
+    background:linear-gradient(135deg,#EE8FA5,var(--rose-deep));
+    color:#fff;font-size:17px;font-weight:600;letter-spacing:2px;
+    padding:15px 46px;border-radius:999px;
+    box-shadow:0 10px 24px rgba(217,83,111,.32);
+    transition:transform .18s ease,box-shadow .18s ease;
+  }
+  .btn:hover{transform:translateY(-2px);box-shadow:0 14px 30px rgba(217,83,111,.4)}
+  .btn:active{transform:translateY(0)}
+  .btn.ghost{
+    background:#fff;color:var(--rose-deep);
+    border:2px solid var(--rose);box-shadow:none;font-weight:600;
+  }
+  .btn.ghost:hover{background:var(--rose-soft)}
+  .disclaimer{
+    text-align:center;color:var(--sub);font-size:12px;line-height:1.7;
+    margin-top:26px;padding:0 8px;
+  }
+  /* ---------- 首页 ---------- */
+  .logo{text-align:center;margin-bottom:8px}
+  .logo svg{width:120px;height:auto}
+  .home-title{
+    text-align:center;font-size:34px;font-weight:800;letter-spacing:4px;
+    background:linear-gradient(120deg,#D9536F,#E8853C);
+    -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+    margin:6px 0 4px;
+  }
+  .home-sub{text-align:center;color:var(--rose-deep);font-weight:600;letter-spacing:6px;font-size:15px;margin-bottom:22px}
+  .home-desc{font-size:15.5px;color:#6B5A62;text-align:center;margin-bottom:22px}
+  .feature-row{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:26px}
+  .feature-chip{
+    background:var(--rose-soft);color:var(--rose-deep);
+    border:1px solid #F6D3DB;border-radius:999px;
+    font-size:13px;padding:6px 14px;font-weight:600;
+  }
+  .home-animals{display:flex;justify-content:center;gap:14px;margin:8px 0 26px}
+  .home-animals .ani{
+    width:74px;height:74px;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    transition:transform .25s ease;
+  }
+  .home-animals .ani:hover{transform:translateY(-6px) rotate(-4deg)}
+  .home-animals .ani svg{width:56px;height:56px}
+  .ani.dog{background:#FAEBD9}.ani.cat{background:#EFEAF9}.ani.deer{background:#F8E7EE}.ani.fox{background:#FDEBD8}
+  .ani.bunny{background:#FCE7F0}.ani.koala{background:#EDF3EC}
+  .home-start{text-align:center}
+  .home-meta{text-align:center;color:var(--sub);font-size:13px;margin-top:14px}
+  /* ---------- 答题页 ---------- */
+  .quiz-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+  .quiz-brand{display:flex;align-items:center;gap:8px;font-weight:700;color:var(--rose-deep);font-size:16px}
+  .quiz-brand svg{width:30px;height:30px}
+  .link-home{color:var(--sub);font-size:13px;text-decoration:none;border-bottom:1px dashed #D8C4CB;padding-bottom:1px;cursor:pointer}
+  .link-home:hover{color:var(--rose-deep)}
+  .progress-line{display:flex;align-items:center;gap:12px;margin-bottom:8px}
+  .progress-text{font-size:13px;color:var(--rose-deep);font-weight:700;white-space:nowrap}
+  .progress-bar{flex:1;height:10px;background:#F6E3E8;border-radius:999px;overflow:hidden}
+  .progress-fill{height:100%;width:0;border-radius:999px;background:linear-gradient(90deg,#EE8FA5,var(--rose-deep));transition:width .35s ease}
+  .dots{display:flex;gap:6px;justify-content:center;margin-bottom:22px;flex-wrap:wrap}
+  .dot{width:11px;height:11px;border-radius:50%;background:#F0DEE3;transition:all .25s ease}
+  .dot.answered{background:var(--rose)}
+  .dot.current{background:#fff;border:2.5px solid var(--rose-deep);width:13px;height:13px}
+  .q-card{animation:qIn .38s ease both}
+  @keyframes qIn{from{opacity:0;transform:translateX(22px)}to{opacity:1;transform:none}}
+  .q-card.back{animation:qInBack .38s ease both}
+  @keyframes qInBack{from{opacity:0;transform:translateX(-22px)}to{opacity:1;transform:none}}
+  .q-index{font-size:13px;color:var(--rose);font-weight:700;letter-spacing:2px;margin-bottom:6px}
+  .q-text{font-size:19px;font-weight:700;line-height:1.65;margin-bottom:20px}
+  .options{display:flex;flex-direction:column;gap:12px}
+  .option{
+    display:flex;align-items:flex-start;gap:12px;
+    background:#FFFBFC;border:2px solid var(--line);border-radius:16px;
+    padding:14px 16px;cursor:pointer;transition:all .2s ease;
+  }
+  .option:hover{border-color:#EFB7C4;background:#FFF8F9;transform:translateX(3px)}
+  .option.selected{border-color:var(--rose);background:var(--rose-soft)}
+  .option-letter{
+    flex:none;width:28px;height:28px;border-radius:50%;
+    background:#F7E8EC;color:var(--rose-deep);
+    display:flex;align-items:center;justify-content:center;
+    font-size:13px;font-weight:800;margin-top:2px;transition:all .2s ease;
+  }
+  .option.selected .option-letter{background:var(--rose-deep);color:#fff}
+  .option-text{font-size:15px;line-height:1.65}
+  .option-check{
+    margin-left:auto;flex:none;width:22px;height:22px;margin-top:4px;
+    color:var(--rose-deep);opacity:0;transform:scale(.4);transition:all .2s ease;
+  }
+  .option.selected .option-check{opacity:1;transform:scale(1)}
+  .quiz-nav{display:flex;justify-content:space-between;align-items:center;margin-top:26px;gap:12px}
+  .nav-btn{
+    border:none;cursor:pointer;font-family:inherit;font-weight:700;font-size:15px;
+    padding:13px 30px;border-radius:999px;transition:all .18s ease;
+  }
+  .nav-prev{background:#fff;color:var(--ink);border:2px solid #EAD9DE}
+  .nav-prev:hover:not(:disabled){border-color:var(--rose);color:var(--rose-deep)}
+  .nav-prev:disabled{opacity:.35;cursor:not-allowed}
+  .nav-next{background:linear-gradient(135deg,#EE8FA5,var(--rose-deep));color:#fff;box-shadow:0 8px 20px rgba(217,83,111,.3)}
+  .nav-next:hover{transform:translateY(-2px)}
+  .quiz-hint{text-align:center;color:var(--sub);font-size:12px;margin-top:18px}
+  .shake{animation:shake .4s ease}
+  @keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-7px)}75%{transform:translateX(7px)}}
+  /* ---------- 结果页 ---------- */
+  .result-hero{text-align:center;padding-bottom:8px}
+  .result-ani{
+    width:170px;height:170px;border-radius:50%;margin:6px auto 16px;
+    display:flex;align-items:center;justify-content:center;
+    animation:pop .6s cubic-bezier(.34,1.56,.64,1) both;
+  }
+  .result-ani svg{width:136px;height:136px}
+  @keyframes pop{from{transform:scale(.3);opacity:0}to{transform:scale(1);opacity:1}}
+  .result-label{font-size:14px;color:var(--sub);letter-spacing:3px}
+  .result-name{font-size:32px;font-weight:800;letter-spacing:2px;margin:4px 0 6px}
+  .result-sub{font-size:15px;color:var(--sub);margin-bottom:14px}
+  .kw-row{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:6px}
+  .kw{
+    font-size:13px;font-weight:700;padding:5px 14px;border-radius:999px;
+  }
+  .result-section{margin-top:30px}
+  .section-title{
+    display:flex;align-items:center;gap:9px;
+    font-size:18px;font-weight:800;letter-spacing:1px;margin-bottom:14px;
+  }
+  .section-title svg{width:22px;height:22px;flex:none}
+  .score-row{display:flex;flex-direction:column;gap:13px}
+  .score-item .score-top{display:flex;align-items:center;gap:8px;margin-bottom:5px}
+  .score-ani{width:30px;height:30px;flex:none}
+  .score-ani svg{width:30px;height:30px}
+  .score-name{font-size:14px;font-weight:700;flex:1}
+  .score-dim{font-size:12px;color:var(--sub);font-weight:400}
+  .score-pct{font-size:14px;font-weight:800}
+  .bar-track{height:12px;background:#F6E7EB;border-radius:999px;overflow:hidden}
+  .bar-fill{height:100%;border-radius:999px;width:0;transition:width 1s cubic-bezier(.22,.61,.36,1)}
+  .desc-block p{font-size:15px;color:#5E4E56;margin-bottom:12px;text-align:justify}
+  .desc-block p:last-child{margin-bottom:0}
+  .list-block{display:flex;flex-direction:column;gap:10px}
+  .list-item{
+    display:flex;gap:10px;font-size:14.5px;line-height:1.7;color:#5E4E56;
+    background:#FFF9FA;border-radius:12px;padding:11px 14px;
+  }
+  .list-item .dotmark{flex:none;width:8px;height:8px;border-radius:50%;margin-top:9px}
+  .advice-item{display:flex;gap:14px;margin-bottom:16px}
+  .advice-item:last-child{margin-bottom:0}
+  .advice-num{
+    flex:none;width:32px;height:32px;border-radius:50%;
+    color:#fff;font-weight:800;font-size:15px;
+    display:flex;align-items:center;justify-content:center;margin-top:2px;
+  }
+  .advice-t{font-size:15.5px;font-weight:700;margin-bottom:2px}
+  .advice-d{font-size:14px;color:#6B5A62;line-height:1.7}
+  .match-grid{display:grid;grid-template-columns:1fr;gap:12px}
+  .match-card{
+    border-radius:16px;padding:15px 16px;display:flex;gap:13px;align-items:flex-start;
+    background:#FFFBFC;border:1.5px solid var(--line);
+  }
+  .match-ani{flex:none;width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center}
+  .match-ani svg{width:42px;height:42px}
+  .match-name{font-size:15px;font-weight:800;margin-bottom:3px}
+  .match-text{font-size:13.5px;color:#6B5A62;line-height:1.65}
+  .second-note{
+    margin-top:30px;border-radius:16px;padding:16px 18px;
+    background:linear-gradient(120deg,#FFF3F5,#FFF8EF);
+    border:1.5px dashed #F0C6D0;font-size:14px;color:#6B5A62;
+  }
+  .second-note b{color:var(--rose-deep)}
+  .result-actions{display:flex;gap:14px;justify-content:center;margin-top:32px;flex-wrap:wrap}
+  /* ---------- toast ---------- */
+  #toast{
+    position:fixed;left:50%;bottom:36px;transform:translateX(-50%) translateY(20px);
+    background:#4A3B42;color:#fff;font-size:14px;padding:12px 22px;border-radius:999px;
+    opacity:0;pointer-events:none;transition:all .3s ease;z-index:99;
+    box-shadow:0 10px 26px rgba(0,0,0,.22);max-width:86vw;text-align:center;
+  }
+  #toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+  .footer-note{text-align:center;color:#C4AEB6;font-size:12px;margin-top:34px;letter-spacing:1px}
+  /* ---------- 响应式 ---------- */
+  @media (max-width:480px){
+    .wrap{padding:18px 12px 40px}
+    .card{padding:24px 18px;border-radius:18px}
+    .home-title{font-size:27px;letter-spacing:3px}
+    .home-sub{font-size:13px;letter-spacing:4px}
+    .q-text{font-size:17px}
+    .option-text{font-size:14px}
+    .result-name{font-size:26px}
+    .btn{padding:13px 36px;font-size:16px}
+    .home-animals{gap:8px}
+    .home-animals .ani{width:64px;height:64px}
+    .home-animals .ani svg{width:48px;height:48px}
+    .nav-btn{padding:12px 24px;font-size:14px}
+  }
+</style>
+</head>
+<body data-page-node-id="TrWgB1XrRVUePC177PNZvk">
+
+<div class="blob b1" data-page-node-id="E4poyQsps5EnkeZvDc4vHc"></div>
+<div class="blob b2" data-page-node-id="spjdDnrvUaWxwVfG08k7VQ"></div>
+<!-- 漂浮的小爱心 -->
+<svg class="heart-float" style="left:8%;animation-delay:0s" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" data-page-node-id="zPhygAwDMYlb7M46o8j2mV"><path d="M12 21s-7.5-4.9-10-9.2C.4 8.9 2 5 5.5 5 7.7 5 9.3 6.3 12 9c2.7-2.7 4.3-4 6.5-4C22 5 23.6 8.9 22 11.8 19.5 16.1 12 21 12 21z" data-page-node-id="hBMwSGQPFbyeOGgT9jQfiK"/></svg>
+<svg class="heart-float" style="left:72%;animation-delay:3.5s" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" data-page-node-id="fF6I1rwlO7EXRuoLr5VpyG"><path d="M12 21s-7.5-4.9-10-9.2C.4 8.9 2 5 5.5 5 7.7 5 9.3 6.3 12 9c2.7-2.7 4.3-4 6.5-4C22 5 23.6 8.9 22 11.8 19.5 16.1 12 21 12 21z" data-page-node-id="3HgjMgzqjHO6TdJEsYmDad"/></svg>
+<svg class="heart-float" style="left:42%;animation-delay:7s" width="22" height="22" viewBox="0 0 24 24" fill="currentColor" data-page-node-id="l450oDeA5S815pULzxOWnw"><path d="M12 21s-7.5-4.9-10-9.2C.4 8.9 2 5 5.5 5 7.7 5 9.3 6.3 12 9c2.7-2.7 4.3-4 6.5-4C22 5 23.6 8.9 22 11.8 19.5 16.1 12 21 12 21z" data-page-node-id="eek6a7zemA5g7CIyCbxDNJ"/></svg>
+<svg class="heart-float" style="left:88%;animation-delay:10s" width="15" height="15" viewBox="0 0 24 24" fill="currentColor" data-page-node-id="bFHwCv72BMwgbHctNsJ02Z"><path d="M12 21s-7.5-4.9-10-9.2C.4 8.9 2 5 5.5 5 7.7 5 9.3 6.3 12 9c2.7-2.7 4.3-4 6.5-4C22 5 23.6 8.9 22 11.8 19.5 16.1 12 21 12 21z" data-page-node-id="dTxvwNrTJEAHE8MIQczzAh"/></svg>
+
+<div class="wrap" data-page-node-id="H876FjKGsS6RaREnEwf3ld">
+
+  <!-- ============ 首页 ============ -->
+  <section class="screen active" id="screen-home" data-page-node-id="BKzgtEszLp1lGLSZnMCGne">
+    <div class="card" data-page-node-id="Pp3JV4T4l5doIu4ib5IsAX">
+      <div class="logo" data-page-node-id="15282v7SnT3WqKZLHwcUMa">
+        <svg viewBox="0 0 120 100" data-page-node-id="EoofOSVnN17GW4kdrfWQOS">
+          <path d="M60 88S22 63 12 42C4 25 14 10 30 10c12 0 22 8 30 18 8-10 18-18 30-18 16 0 26 15 18 32C100 63 60 88 60 88z" fill="#F5A8BB" data-page-node-id="PrFScJeGw7rHoGGWSpmuc6"/>
+          <path d="M60 88S22 63 12 42C4 25 14 10 30 10c12 0 22 8 30 18 8-10 18-18 30-18 16 0 26 15 18 32C100 63 60 88 60 88z" fill="none" stroke="#D9536F" stroke-width="3" data-page-node-id="yQKBSHILXDU4FLBeN1m77E"/>
+          <circle cx="42" cy="42" r="4" fill="#4A3B42" data-page-node-id="Iv45u6k3yCfcEECIMx5UoV"/><circle cx="78" cy="42" r="4" fill="#4A3B42" data-page-node-id="ECrcUubapOelySRIhHyGnI"/>
+          <circle cx="43.5" cy="40.5" r="1.4" fill="#fff" data-page-node-id="BBhqx14ZVDoDKAvr3oEoSK"/><circle cx="79.5" cy="40.5" r="1.4" fill="#fff" data-page-node-id="e7urHkWRqlTIWUvFBCbk8A"/>
+          <path d="M54 52q6 6 12 0" stroke="#4A3B42" stroke-width="3" fill="none" stroke-linecap="round" data-page-node-id="GNHMLIlER8ntFuvFbDyDaL"/>
+          <ellipse cx="30" cy="52" rx="5" ry="3" fill="#F2A0A0" opacity=".8" data-page-node-id="l6U4bzlCRRqtureNZ2NJ82"/>
+          <ellipse cx="90" cy="52" rx="5" ry="3" fill="#F2A0A0" opacity=".8" data-page-node-id="RqCTFwoyJEDkyBXJSf4l2V"/>
+        </svg>
+      </div>
+      <h1 class="home-title" data-page-node-id="O979tyBMpvu5KDHdjzwsqa">心动动物园</h1>
+      <p class="home-sub" data-page-node-id="v8F9tTJs6MwvdMfni7oltR">萌宠恋爱人格测试</p>
+      <div class="home-animals" data-page-node-id="LLS9EmNnCzNwYNF2GBRtYs">
+        <div class="ani dog" id="ani-dog" data-page-node-id="QE6Bga8qHaUDUVPYpzCNmN"></div>
+        <div class="ani cat" id="ani-cat" data-page-node-id="xQLfe0sCqP6G8r5nDqMQyL"></div>
+        <div class="ani deer" id="ani-deer" data-page-node-id="aJ634ldOfRIIxA9e3ZVpxv"></div>
+        <div class="ani fox" id="ani-fox" data-page-node-id="WSfpWnSzHYi3tx6mcVWxMZ"></div>
+        <div class="ani bunny" id="ani-bunny"></div>
+        <div class="ani koala" id="ani-koala"></div>
+      </div>
+      <p class="home-desc" data-page-node-id="H11dHczipGGdgBCWN9BJKP">
+        在爱情里，你更像忠诚憨厚的<b data-page-node-id="kzdebNwDNzyzUPfAqKsVfk">忠犬</b>、清醒独立的<b data-page-node-id="rRzjUvyd4ip7cfUYs7ELK0">猫咪</b>、
+        敏感细腻的<b data-page-node-id="dTwk0fl29N3KDRbRsdChFQ">小鹿</b>、热情鲜活的<b data-page-node-id="luSvtilvQqmXy8cwHDON3M">狐狸</b>，
+        活泼黏人的<b>兔子</b>，还是慵懒治愈的<b>考拉</b>？<br data-page-node-id="u0XDxaDxEjttUgmrDpuDin">
+        16 道情境题（含占有欲特辑），看见你在亲密关系中最真实的样子。
+      </p>
+      <div class="home-start" data-page-node-id="QsHncDbuPgCnS6jf8QdQX8">
+        <button class="btn" id="btn-start" data-page-node-id="I5oaX37N5ziBFFRysya1UG">开 始 测 试</button>
+        <p class="home-meta" data-page-node-id="PJh1F1VZ8e3TLzlDmbHcGh">共 16 题 · 题目与选项顺序随机 · 选择最符合你真实反应的选项</p>
+      </div>
+    </div>
+    <p class="disclaimer" data-page-node-id="HM9j7erGeCtdRjR0YhViBX">
+      本测试为原创趣味自评，仅供娱乐与自我探索参考，不构成任何专业心理诊断。<br data-page-node-id="oUFuWhxfUB8SLHBwFvffD1">
+      如遇情感困扰并需要专业帮助，请咨询正规心理咨询机构。
+    </p>
+  </section>
+
+  <!-- ============ 答题页 ============ -->
+  <section class="screen" id="screen-quiz" data-page-node-id="LFcBiMB3hLJgwPADnLlljz">
+    <div class="quiz-top" data-page-node-id="CPbQr2WrZtBDuIrA2hH7FI">
+      <div class="quiz-brand" data-page-node-id="lGhSs8alHQgWRXGgCOWYP1">
+        <svg viewBox="0 0 120 100" data-page-node-id="WRClsghIVzah1E0pSGcvaI"><path d="M60 88S22 63 12 42C4 25 14 10 30 10c12 0 22 8 30 18 8-10 18-18 30-18 16 0 26 15 18 32C100 63 60 88 60 88z" fill="#F5A8BB" stroke="#D9536F" stroke-width="4" data-page-node-id="s7nI0XC5uIqdRagckXzZg7"/></svg>
+        心动动物园
+      </div>
+      <span class="link-home" id="btn-quit" data-page-node-id="MLE7Gr57ysfZQndtzrJKHU">回到首页</span>
+    </div>
+    <div class="card" data-page-node-id="f7OTESAMBFpAMkETZ3ia91">
+      <div class="progress-line" data-page-node-id="iIYf4zrfl9rdARqvoGgEzn">
+        <span class="progress-text" id="progress-text" data-page-node-id="M9VmJJuEndvtLcEiJDxFpV">1 / 12</span>
+        <div class="progress-bar" data-page-node-id="Vnti0h6swfJAKkbZjQAV1P"><div class="progress-fill" id="progress-fill" data-page-node-id="lKEdqp6OXTxUAIoOQfk84Z"></div></div>
+        <span class="progress-text" id="answered-text" data-page-node-id="xRBGi5puw193zjX6gBreoa">已答 0</span>
+      </div>
+      <div class="dots" id="dots" data-page-node-id="D5jcOlEHdaO3ptTqqWTfTh"></div>
+      <div id="q-container" data-page-node-id="WJr62q7fZbcJmTSvGx2fF5"></div>
+      <div class="quiz-nav" data-page-node-id="kiBF5GigtCSAAIDYRniPWI">
+        <button class="nav-btn nav-prev" id="btn-prev" data-page-node-id="VY3gqRCAHXQmD1FA5BERtV">上一题</button>
+        <button class="nav-btn nav-next" id="btn-next" data-page-node-id="z8lAjkdu9SEabpeWEIS6LG">下一题</button>
+      </div>
+    </div>
+    <p class="quiz-hint" data-page-node-id="aKYKDvHKvzG1FI2LUEg8Qi">点击选项后将自动进入下一题 · 可随时点「上一题」返回修改答案</p>
+  </section>
+
+  <!-- ============ 结果页 ============ -->
+  <section class="screen" id="screen-result" data-page-node-id="KJgXg0TZLEJxomxGG0s31l">
+    <div class="card" id="result-card" data-page-node-id="dmeAx8DmTmmAZ9cb3JBWM4"></div>
+    <p class="disclaimer" data-page-node-id="oWkMzuC0TfPow6n71pSgs9">
+      本结果由你的作答实时计算生成，非随机抽取。<br data-page-node-id="xryKx97YG39p0XD5YP5lmo">
+      原创趣味自评，仅供娱乐与自我探索参考，不构成专业心理诊断。
+    </p>
+    <p class="footer-note" data-page-node-id="2XT5fYmLEUnTXxgFoTht2s">— 心动动物园 · 愿你被温柔以待 —</p>
+  </section>
+
+</div>
+
+<div id="toast" data-page-node-id="3tkPDn4NaUzNpzV5VJreEJ"></div>
+
+<script>
+/* =====================================================
+   原创动物插画（内联 SVG）
+===================================================== */
+const SVGS = {
+  /* —— kawaii 可爱风：圆轮廓 · 大头小身子 · 水亮大眼 · 粉腮红 · 柔和粉彩 —— */
+  dog: `<svg viewBox="0 0 200 200">
+    <path d="M158 146 q28 -4 24 -32" stroke="#E5A96B" stroke-width="12" fill="none" stroke-linecap="round"/>
+    <ellipse cx="100" cy="160" rx="46" ry="32" fill="#F4CBA0"/>
+    <ellipse cx="100" cy="166" rx="26" ry="20" fill="#FDF1DC"/>
+    <ellipse cx="76" cy="186" rx="12" ry="8" fill="#FDF1DC"/>
+    <ellipse cx="124" cy="186" rx="12" ry="8" fill="#FDF1DC"/>
+    <path d="M56 64 q-24 10 -18 52 q3 20 18 18 q9 -2 11 -22 z" fill="#E5A96B"/>
+    <path d="M144 64 q24 10 18 52 q-3 20 -18 18 q-9 -2 -11 -22 z" fill="#E5A96B"/>
+    <circle cx="100" cy="90" r="58" fill="#F4CBA0"/>
+    <circle cx="78" cy="64" r="4" fill="#DBA263"/><circle cx="122" cy="64" r="4" fill="#DBA263"/>
+    <ellipse cx="100" cy="110" rx="26" ry="18" fill="#FDF1DC"/>
+    <circle cx="76" cy="88" r="11" fill="#4A3728"/><circle cx="124" cy="88" r="11" fill="#4A3728"/>
+    <circle cx="79.5" cy="84.5" r="4.2" fill="#fff"/><circle cx="127.5" cy="84.5" r="4.2" fill="#fff"/>
+    <circle cx="72.5" cy="92" r="2" fill="#fff" opacity=".9"/><circle cx="120.5" cy="92" r="2" fill="#fff" opacity=".9"/>
+    <ellipse cx="53" cy="106" rx="11" ry="6.5" fill="#F6A3A3" opacity=".9"/>
+    <ellipse cx="147" cy="106" rx="11" ry="6.5" fill="#F6A3A3" opacity=".9"/>
+    <ellipse cx="100" cy="104" rx="9" ry="7" fill="#4A3728"/>
+    <path d="M100 111 v4" stroke="#4A3728" stroke-width="3" stroke-linecap="round"/>
+    <path d="M100 115 q-7 6 -13 1 M100 115 q7 6 13 1" stroke="#4A3728" stroke-width="3" fill="none" stroke-linecap="round"/>
+    <path d="M94 118 q6 11 12 0 z" fill="#F08AA0"/>
+    <path d="M168 44c-4.5 0-7 3-7 6 0 4.5 7 9 7 9s7-4.5 7-9c0-3-2.5-6-7-6z" fill="#F5A8BB"/>
+  </svg>`,
+  cat: `<svg viewBox="0 0 200 200">
+    <path d="M148 162 q32 2 32 -24 q0 -11 -12 -11" stroke="#BCAFDF" stroke-width="13" fill="none" stroke-linecap="round"/>
+    <ellipse cx="100" cy="162" rx="42" ry="30" fill="#CBBEEA"/>
+    <ellipse cx="100" cy="168" rx="24" ry="18" fill="#F1EDFA"/>
+    <ellipse cx="80" cy="188" rx="11" ry="7" fill="#F1EDFA"/>
+    <ellipse cx="120" cy="188" rx="11" ry="7" fill="#F1EDFA"/>
+    <path d="M58 58 L46 10 L96 40 Z" fill="#BCAFDF"/>
+    <path d="M142 58 L154 10 L104 40 Z" fill="#BCAFDF"/>
+    <path d="M60 49 L54 24 L80 40 Z" fill="#F7C4CE"/>
+    <path d="M140 49 L146 24 L120 40 Z" fill="#F7C4CE"/>
+    <circle cx="100" cy="94" r="56" fill="#CBBEEA"/>
+    <path d="M64 90 q10 -11 20 0" stroke="#4A3F5C" stroke-width="4.5" fill="none" stroke-linecap="round"/>
+    <path d="M116 90 q10 -11 20 0" stroke="#4A3F5C" stroke-width="4.5" fill="none" stroke-linecap="round"/>
+    <ellipse cx="57" cy="106" rx="11" ry="6.5" fill="#F6A3A3" opacity=".9"/>
+    <ellipse cx="143" cy="106" rx="11" ry="6.5" fill="#F6A3A3" opacity=".9"/>
+    <path d="M95 102 h10 l-5 6 z" fill="#E8748C"/>
+    <path d="M100 108 q-4 6 -9 3 M100 108 q4 6 9 3" stroke="#4A3F5C" stroke-width="3" fill="none" stroke-linecap="round"/>
+    <path d="M46 98 h-19 M48 108 l-18 6 M154 98 h19 M152 108 l18 6" stroke="#A798D2" stroke-width="2.5" stroke-linecap="round"/>
+    <path d="M168 44c-4.5 0-7 3-7 6 0 4.5 7 9 7 9s7-4.5 7-9c0-3-2.5-6-7-6z" fill="#D9A7E3"/>
+  </svg>`,
+  deer: `<svg viewBox="0 0 200 200">
+    <path d="M68 48 C66 32 56 26 52 12" stroke="#CDAB85" stroke-width="7" fill="none" stroke-linecap="round"/>
+    <circle cx="52" cy="12" r="6.5" fill="#CDAB85"/>
+    <path d="M62 40 C54 38 47 32 43 25" stroke="#CDAB85" stroke-width="6" fill="none" stroke-linecap="round"/>
+    <circle cx="43" cy="25" r="5" fill="#CDAB85"/>
+    <path d="M132 48 C134 32 144 26 148 12" stroke="#CDAB85" stroke-width="7" fill="none" stroke-linecap="round"/>
+    <circle cx="148" cy="12" r="6.5" fill="#CDAB85"/>
+    <path d="M138 40 C146 38 153 32 157 25" stroke="#CDAB85" stroke-width="6" fill="none" stroke-linecap="round"/>
+    <circle cx="157" cy="25" r="5" fill="#CDAB85"/>
+    <ellipse cx="46" cy="70" rx="18" ry="11" fill="#DBB794" transform="rotate(-32 46 70)"/>
+    <ellipse cx="154" cy="70" rx="18" ry="11" fill="#DBB794" transform="rotate(32 154 70)"/>
+    <ellipse cx="100" cy="162" rx="42" ry="30" fill="#F0D5B8"/>
+    <circle cx="72" cy="150" r="5" fill="#FBEDD9"/><circle cx="84" cy="142" r="4" fill="#FBEDD9"/>
+    <circle cx="128" cy="150" r="5" fill="#FBEDD9"/><circle cx="116" cy="142" r="4" fill="#FBEDD9"/>
+    <ellipse cx="100" cy="168" rx="24" ry="17" fill="#FBEDD9"/>
+    <ellipse cx="80" cy="188" rx="11" ry="7" fill="#FBEDD9"/>
+    <ellipse cx="120" cy="188" rx="11" ry="7" fill="#FBEDD9"/>
+    <circle cx="100" cy="96" r="56" fill="#F0D5B8"/>
+    <circle cx="76" cy="92" r="13" fill="#4A3728"/><circle cx="124" cy="92" r="13" fill="#4A3728"/>
+    <circle cx="80.5" cy="88" r="5" fill="#fff"/><circle cx="128.5" cy="88" r="5" fill="#fff"/>
+    <circle cx="72" cy="96" r="2.2" fill="#fff" opacity=".9"/><circle cx="120" cy="96" r="2.2" fill="#fff" opacity=".9"/>
+    <ellipse cx="53" cy="111" rx="12" ry="7" fill="#F6A3A3" opacity=".95"/>
+    <ellipse cx="147" cy="111" rx="12" ry="7" fill="#F6A3A3" opacity=".95"/>
+    <ellipse cx="100" cy="110" rx="6.5" ry="5" fill="#8A5A44"/>
+    <path d="M100 115 q-6 6 -12 2 M100 115 q6 6 12 2" stroke="#8A5A44" stroke-width="3" fill="none" stroke-linecap="round"/>
+    <path d="M168 44c-4.5 0-7 3-7 6 0 4.5 7 9 7 9s7-4.5 7-9c0-3-2.5-6-7-6z" fill="#F5A8BB"/>
+  </svg>`,
+  fox: `<svg viewBox="0 0 200 200">
+    <ellipse cx="150" cy="152" rx="32" ry="18" fill="#F7AC6C" transform="rotate(-24 150 152)"/>
+    <ellipse cx="176" cy="139" rx="12" ry="9" fill="#FEF6E9" transform="rotate(-24 176 139)"/>
+    <ellipse cx="100" cy="160" rx="44" ry="31" fill="#F7AC6C"/>
+    <ellipse cx="100" cy="166" rx="25" ry="19" fill="#FEF6E9"/>
+    <ellipse cx="78" cy="187" rx="11" ry="7" fill="#FEF6E9"/>
+    <ellipse cx="122" cy="187" rx="11" ry="7" fill="#FEF6E9"/>
+    <path d="M56 64 L36 6 L98 40 Z" fill="#F7AC6C"/>
+    <path d="M144 64 L164 6 L102 40 Z" fill="#F7AC6C"/>
+    <path d="M60 53 L50 20 L82 39 Z" fill="#5E4032"/>
+    <path d="M140 53 L150 20 L118 39 Z" fill="#5E4032"/>
+    <path d="M100 38 C60 38 42 66 42 94 C42 122 68 146 100 146 C132 146 158 122 158 94 C158 66 140 38 100 38 Z" fill="#F7AC6C"/>
+    <path d="M100 100 C80 100 61 106 61 118 C61 132 79 142 100 142 C121 142 139 132 139 118 C139 106 120 100 100 100 Z" fill="#FEF6E9"/>
+    <path d="M62 88 q11 -12 22 0" stroke="#5E4032" stroke-width="4.5" fill="none" stroke-linecap="round"/>
+    <path d="M116 88 q11 -12 22 0" stroke="#5E4032" stroke-width="4.5" fill="none" stroke-linecap="round"/>
+    <ellipse cx="54" cy="104" rx="11" ry="6.5" fill="#F6A3A3" opacity=".9"/>
+    <ellipse cx="146" cy="104" rx="11" ry="6.5" fill="#F6A3A3" opacity=".9"/>
+    <ellipse cx="100" cy="110" rx="8" ry="6" fill="#5E4032"/>
+    <path d="M100 116 q8 9 17 3" stroke="#5E4032" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+    <path d="M168 44c-4.5 0-7 3-7 6 0 4.5 7 9 7 9s7-4.5 7-9c0-3-2.5-6-7-6z" fill="#F5A8BB"/>
+  </svg>`,
+  bunny: `<svg viewBox="0 0 200 200">
+    <ellipse cx="70" cy="36" rx="14" ry="34" fill="#F4B4CC"/>
+    <ellipse cx="130" cy="36" rx="14" ry="34" fill="#F4B4CC"/>
+    <ellipse cx="70" cy="40" rx="7" ry="24" fill="#FBD9E6"/>
+    <ellipse cx="130" cy="40" rx="7" ry="24" fill="#FBD9E6"/>
+    <ellipse cx="100" cy="162" rx="42" ry="30" fill="#F4B4CC"/>
+    <ellipse cx="100" cy="168" rx="24" ry="18" fill="#FCEEF4"/>
+    <ellipse cx="80" cy="188" rx="11" ry="7" fill="#FCEEF4"/>
+    <ellipse cx="120" cy="188" rx="11" ry="7" fill="#FCEEF4"/>
+    <circle cx="100" cy="98" r="54" fill="#F4B4CC"/>
+    <circle cx="78" cy="94" r="11" fill="#4A3742"/><circle cx="122" cy="94" r="11" fill="#4A3742"/>
+    <circle cx="81.5" cy="90.5" r="4.2" fill="#fff"/><circle cx="125.5" cy="90.5" r="4.2" fill="#fff"/>
+    <circle cx="74.5" cy="98" r="2" fill="#fff" opacity=".9"/><circle cx="118.5" cy="98" r="2" fill="#fff" opacity=".9"/>
+    <ellipse cx="56" cy="110" rx="11" ry="6.5" fill="#F69090" opacity=".9"/>
+    <ellipse cx="144" cy="110" rx="11" ry="6.5" fill="#F69090" opacity=".9"/>
+    <path d="M95 108 h10 l-5 6 z" fill="#E8748C"/>
+    <path d="M100 114 q-5 6 -10 3 M100 114 q5 6 10 3" stroke="#4A3742" stroke-width="3" fill="none" stroke-linecap="round"/>
+    <rect x="95" y="117" width="10" height="8" rx="2.5" fill="#fff" stroke="#E8C9D5" stroke-width="1.5"/>
+    <path d="M168 44c-4.5 0-7 3-7 6 0 4.5 7 9 7 9s7-4.5 7-9c0-3-2.5-6-7-6z" fill="#F5A8BB"/>
+  </svg>`,
+  koala: `<svg viewBox="0 0 200 200">
+    <circle cx="46" cy="72" r="26" fill="#9EABA0"/>
+    <circle cx="154" cy="72" r="26" fill="#9EABA0"/>
+    <circle cx="46" cy="72" r="13" fill="#E7DDD5"/>
+    <circle cx="154" cy="72" r="13" fill="#E7DDD5"/>
+    <ellipse cx="100" cy="162" rx="42" ry="30" fill="#AEBBA9"/>
+    <ellipse cx="100" cy="168" rx="24" ry="18" fill="#E9EFE6"/>
+    <ellipse cx="80" cy="188" rx="11" ry="7" fill="#E9EFE6"/>
+    <ellipse cx="120" cy="188" rx="11" ry="7" fill="#E9EFE6"/>
+    <circle cx="100" cy="96" r="56" fill="#AEBBA9"/>
+    <path d="M64 92 q10 9 20 0" stroke="#4A4A44" stroke-width="4.5" fill="none" stroke-linecap="round"/>
+    <path d="M116 92 q10 9 20 0" stroke="#4A4A44" stroke-width="4.5" fill="none" stroke-linecap="round"/>
+    <ellipse cx="100" cy="102" rx="13" ry="16" fill="#5C564F"/>
+    <ellipse cx="96" cy="96" rx="4" ry="5" fill="#8A847C" opacity=".8"/>
+    <ellipse cx="56" cy="112" rx="11" ry="6.5" fill="#F6A3A3" opacity=".9"/>
+    <ellipse cx="144" cy="112" rx="11" ry="6.5" fill="#F6A3A3" opacity=".9"/>
+    <path d="M92 124 q8 6 16 0" stroke="#4A4A44" stroke-width="3" fill="none" stroke-linecap="round"/>
+    <path d="M168 44c-4.5 0-7 3-7 6 0 4.5 7 9 7 9s7-4.5 7-9c0-3-2.5-6-7-6z" fill="#F5A8BB"/>
+  </svg>`
+};
+
+/* =====================================================
+   四种恋爱人格
+===================================================== */
+const TYPES = {
+  dog: {
+    name: "忠犬系恋人",
+    sub: "忠诚稳定的长期主义者",
+    keywords: ["忠诚", "稳定", "深情", "靠谱"],
+    color: "#D98E4A", tint: "#FAEBD9",
+    dim: "稳定可靠",
+    attach: "依恋倾向：安全型", lang: "爱的语言：行动与陪伴",
+    desc: [
+      "一旦认定，就是一整个人生。你像忠犬一样，把爱情当作长期的承诺来经营：记得 TA 的口味、TA 的忌口、TA 随口提过一次的心愿。你相信细水长流的力量，不追求轰轰烈烈，但求问心无愧。在感情里，你是那个「永远在场」的人——风雨来的时候，别人在跑，你在撑伞。",
+      "你的爱是笃定的、具体的、落在行动上的。但也要小心：习惯付出的你，有时会把「委屈自己」误当成「爱的证明」。学会照顾自己，是你一生的必修课。"
+    ],
+    strengths: [
+      "高忠诚度：认定一个人后非常专一，几乎不碰暧昧红线",
+      "行动派浪漫：爱意藏在被记住的细节和被安顿好的日常里",
+      "情绪稳定器：关系动荡时，你往往是先稳住局面的那个人",
+      "可信赖度满分：说到做到，承诺在你这里有分量"
+    ],
+    blindspots: [
+      "容易过度付出，把对方的舒适建立在自己的将就之上",
+      "习惯报喜不报忧，委屈积攒久了会以失望的形式爆发",
+      "对「不值得的人」免疫力偏低，深情可能被消耗",
+      "容易把自我价值感过多绑定在「被需要」上"
+    ],
+    advice: [
+      { t: "学会「提需求」", d: "把「我都行」换成「我想要…」。健康的爱是双向流动，不是单方面成全。你的需求同样重要。" },
+      { t: "给付出设一条边界", d: "先照顾好自己的情绪账户，再考虑为 TA 充值。付出前问自己一句：这件事，我心甘情愿吗？" },
+      { t: "定期做「关系体检」", d: "每月一次，坦诚聊聊彼此的委屈和期待。别把小情绪攒成大失望，冷战从来不是忠犬该有的结局。" },
+      { t: "保留一块自己的领地", d: "朋友、爱好、独处的周末——你的世界越完整，爱得越从容，对方也越珍惜你。" }
+    ],
+    matches: [
+      { type: "cat", text: "别追着要回应，TA 的安静不等于不爱。给足空间，TA 反而会主动来蹭你。" },
+      { type: "deer", text: "你的稳定是 TA 最需要的安全感。多说「我在」，多给确定的回应，TA 就能安心撒欢。" },
+      { type: "fox", text: "陪 TA 玩，但温和地守住节奏。你负责让心动落地，TA 负责让日子发光。" },
+      { type: "bunny", text: "TA 的活力能点亮你的日常。TA 撒娇时给个回应，TA 就心满意足了。" },
+      { type: "koala", text: "你们都稳，小心日子稳到没话聊。偶尔一起做点新鲜事，给关系加点料。" }
+    ]
+  },
+  cat: {
+    name: "猫系恋人",
+    sub: "独立清醒的自我掌控者",
+    keywords: ["独立", "慢热", "清醒", "有格调"],
+    color: "#9C8FC6", tint: "#EFEAF9",
+    dim: "独立自洽",
+    attach: "依恋倾向：疏离型（高功能）", lang: "爱的语言：高质量陪伴",
+    desc: [
+      "爱得清醒，也爱得有格调。你像猫一样保留着自己的领地和心跳节奏：可以很亲密，但必须先是自己。你不是不深情，而是把深情藏在分寸感里——嘴上云淡风轻，关键时刻却永远在场。",
+      "对你来说，最好的爱情不是彼此占有，而是两个完整的人互相照亮。你的爱是克制的、高级的、细水长流的。只是偶尔，TA 可能需要你把「在乎」说得更明白一点。"
+    ],
+    strengths: [
+      "边界感一流：再爱一个人，也不会弄丢自己",
+      "情绪自洽：不内耗、不查岗、不脑补，恋爱脑绝缘体",
+      "关键时刻靠得住：平时高冷，大事上从不含糊",
+      "欣赏力满分：能看见并成全对方本来的样子"
+    ],
+    blindspots: [
+      "慢热加含蓄，容易被误读成「不在乎」",
+      "习惯用理性回应对方的情绪，偶尔显得有点冷",
+      "错失表达心意的时机，事后又懒得解释",
+      "过度独立，可能让伴侣找不到「被需要」的位置"
+    ],
+    advice: [
+      { t: "每天一句「温度播报」", d: "主动分享一件小事、说一句想念。你的主动，是 TA 最重要的安全感来源，成本很低，收益很高。" },
+      { t: "把爱「具体化」", d: "与其默默做事，不如边做边说——「我给你留了汤」这句话，比留了汤本身更重要。" },
+      { t: "练习示弱", d: "偶尔说一句「我需要你」，不会削弱你的独立，反而会让关系更近一层。" },
+      { t: "给规律的高质量约会", d: "黏腻不是你的风格，但稳定的约会节奏是。把它写进日程表，像对待工作一样认真对待。" }
+    ],
+    matches: [
+      { type: "dog", text: "TA 的付出需要回应，别让 TA 一个人热。每天一点确定的回馈，TA 就很满足。" },
+      { type: "deer", text: "TA 容易想多，你的沉默会被翻译成冷淡。一句「我在忙，晚点找你」，胜过十句事后解释。" },
+      { type: "fox", text: "TA 要火花，你要清净。约定各自的「充电时间」，各玩各的再汇合，反而更甜。" },
+      { type: "bunny", text: "TA 的热情可能让你想逃，但别冷处理——告诉 TA 你需要安静，而不是直接消失。" },
+      { type: "koala", text: "你们都是省电模式，相处不累。但记得主动分享，不然容易变成「最熟悉的陌生人」。" }
+    ]
+  },
+  deer: {
+    name: "小鹿系恋人",
+    sub: "细腻敏感的深情浪漫派",
+    keywords: ["细腻", "敏感", "浪漫", "用心"],
+    color: "#CE8AA5", tint: "#F8E7EE",
+    dim: "细腻敏感",
+    attach: "依恋倾向：焦虑型", lang: "爱的语言：文字与确认",
+    desc: [
+      "爱得认真，也爱得用力。你像林间的小鹿，对世界保持着一颗敏感而柔软的心：能捕捉到恋人语气里最细微的变化，也记得每一次心动时的草木香气。你的爱是全情投入的——会写很长的小作文，会为纪念日精心准备，会把「TA 今天为什么不开心」当成头等大事来研究。",
+      "你的细腻是天赋，但别让它变成负担：你不是 TA 情绪的负责人，你首先是自己的。把一部分注意力收回来浇灌自己，你会爱得更轻盈。"
+    ],
+    strengths: [
+      "共情力超强：能第一时间察觉对方的情绪变化",
+      "经营型选手：仪式感、纪念日、小惊喜，一个不落",
+      "深度沟通者：愿意聊感受、聊关系、聊那些「重要的小事」",
+      "爱得真挚：感情浓度高，让对方感到被深深在乎"
+    ],
+    blindspots: [
+      "容易患得患失，回复慢一点就开始内心小剧场",
+      "过度解读细节，把「事实」和「想象」混在一起",
+      "把对方的情绪当成自己的责任，常常替 TA 焦虑",
+      "需求表达爱绕弯子，希望 TA「自己懂」，结果互相委屈"
+    ],
+    advice: [
+      { t: "给想象装一个「刹车」", d: "不安时先问自己：这是事实，还是我的猜测？不确定就直接求证——脑补是亲密关系里最贵的成本。" },
+      { t: "建立自我价值锚点", d: "安全感的一半要来自自己。事业、爱好、朋友，都是你的底气。你越完整，越不容易在爱里失重。" },
+      { t: "需求直说", d: "把「你猜」换成「我想要」。清晰的表达不是撒娇的失败，而是关系的升级。" },
+      { t: "允许对方有情绪", d: "TA 的低气压不一定和你有关。先照顾好自己的心，再去抱 TA。" }
+    ],
+    matches: [
+      { type: "dog", text: "你们是天然的安全感组合。TA 的稳定，最能安放你的敏感。" },
+      { type: "cat", text: "TA 的安静不是冷暴力，是出厂设置。和 TA 约定「回应暗号」，比如晚回消息先发个表情。" },
+      { type: "fox", text: "TA 的热闹能带你看更大的世界，但记得把不安说出来，而不是憋着等 TA 猜。" },
+      { type: "bunny", text: "TA 的快乐会感染你，TA 的黏人刚好给你确定感——这是很治愈你的类型。" },
+      { type: "koala", text: "TA 的安静不是冷淡，是松弛。别把 TA 的「懒得说」脑补成「不爱了」。" }
+    ]
+  },
+  fox: {
+    name: "狐狸系恋人",
+    sub: "热情鲜活的浪漫制造机",
+    keywords: ["热情", "主动", "有趣", "会撩"],
+    color: "#E8853C", tint: "#FDEBD8",
+    dim: "热情浪漫",
+    attach: "依恋倾向：激情型", lang: "爱的语言：惊喜与赞美",
+    desc: [
+      "爱要热烈，日子要有光。你像狐狸一样聪明、鲜活、自带吸引力：擅长制造心动，也享受被心动。对你来说，爱情最迷人的部分是那团火——眼神的拉扯、心照不宣的默契、说走就走的浪漫。",
+      "你不是不能安稳，而是相信感情需要持续「充值」新鲜感，才能对抗时间的消磨。你的爱是明亮的、有趣的、高浓度的。要留心的只是：火苗之后，还要学会添柴。"
+    ],
+    strengths: [
+      "主动性满分：喜欢就追，心动就说，绝不拧巴",
+      "高情绪价值：会撩、会哄、会制造快乐，和你在一起很难无聊",
+      "浪漫生产力：惊喜、仪式感、新鲜体验信手拈来",
+      "感染力强：你的热情能点亮一段关系，甚至一个圈子"
+    ],
+    blindspots: [
+      "新鲜感依赖：平淡期容易心痒，把「刺激」误当成「爱」",
+      "擅长开始，不擅长应对深水区的矛盾与磨合",
+      "习惯用玩笑回避严肃话题，深度沟通是短板",
+      "注意力容易被更新鲜的事物吸引，承诺定力需要练习"
+    ],
+    advice: [
+      { t: "把心动翻译成经营", d: "热恋期的技能——惊喜、约会、大方表达——请长期保留。它们不是限时道具，而是关系的防腐剂。" },
+      { t: "练习深度对话", d: "每月一次，关掉玩笑模式，认真聊聊彼此的不安、期待和底线。能聊散的火，才是能长烧的火。" },
+      { t: "警惕「刺激 = 爱」的错觉", d: "让你心跳加速的不一定是对的人，让你心安的才是。下次心痒时，先分清是心动，还是惯性。" },
+      { t: "给平淡一点耐心", d: "试着把「无聊的日常」过出花样——那比制造惊喜更高级，也更接近爱的本质。" }
+    ],
+    matches: [
+      { type: "dog", text: "TA 给你安全感，你给 TA 新鲜感。记得回应 TA 的付出，别只顾着自己跑。" },
+      { type: "cat", text: "别把 TA 的淡定当挑战。收起套路，用真诚换真诚，你们其实很合拍。" },
+      { type: "deer", text: "TA 的心思很细，你随口的一句会被记很久。多一些确定的表达，少一些忽冷忽热。" },
+      { type: "bunny", text: "你们都是快乐发动机，但两个高能量的人也要学会轮流倾听，别光顾着各说各话。" },
+      { type: "koala", text: "TA 慢你快，别把 TA 的淡定当无聊——TA 的安稳，正是你最需要的落地感。" }
+    ]
+  },
+  bunny: {
+    name: "兔子系恋人",
+    sub: "活泼黏人的快乐小太阳",
+    keywords: ["活泼", "黏人", "天真", "快乐源泉"],
+    color: "#EE7BA0", tint: "#FCE7F0",
+    dim: "活泼外放",
+    attach: "依恋倾向：热情黏人型", lang: "爱的语言：撒娇与肢体接触",
+    desc: [
+      "爱得热热闹闹，开心全都写在脸上。你像兔子一样蹦蹦跳跳地爱人：早安晚安一个不落，「爱你」每天说一百遍也不腻，喜欢一个人就恨不得挂在 TA 身上。你的恋爱没有灰色地带——喜欢就要让全世界知道，不开心了撅个嘴等 TA 来哄，三分钟又满血复活。",
+      "你的爱是高能量的、外放的、感染力满分的。只是也要记得：不是所有人都能跟上你的电量，偶尔放慢半拍，把「黏人」调成「刚好」的浓度。"
+    ],
+    strengths: [
+      "快乐制造机：和你在一起，平淡日子也能过成游乐园",
+      "表达零障碍：爱和想念随时说出口，从不让 TA 猜",
+      "情绪恢复快：吵架不记仇，转身就能和好",
+      "热恋续航强：在一起再久，也保有初见时的那股兴奋劲儿"
+    ],
+    blindspots: [
+      "黏人浓度偏高，容易让对方觉得喘不过气",
+      "情绪来得快去得也快，有时被误读为「不走心」",
+      "太依赖即时回应，TA 一忙你就容易电量告急",
+      "爱得太满，偶尔忘了给自己留独处充电的时间"
+    ],
+    advice: [
+      { t: "把「黏人」调成「刚好」", d: "每天留一两段不联系的空白时间，让想念有机会发酵——距离感是可爱的放大器。" },
+      { t: "练习「慢回复」", d: "不是每条消息都要秒回。把注意力放回自己手上的事，你的世界越丰富，黏人越可爱。" },
+      { t: "认真一次给 TA 看", d: "你总负责搞笑，偶尔也聊聊认真的事。让 TA 知道你不只是开心果，也是能依靠的人。" },
+      { t: "给情绪装个「减速带」", d: "开心和委屈都先数三秒再表达。你的真诚没变，但会多一分让人踏实的分量。" }
+    ],
+    matches: [
+      { type: "dog", text: "TA 的稳定刚好接住你的闹腾，你负责热闹，TA 负责兜底，绝配。" },
+      { type: "cat", text: "TA 需要安静，你需要热闹。约定好「充电时间」，各自恢复电量后再黏在一起。" },
+      { type: "deer", text: "你俩都是高需求宝宝，记得轮流当那个先安抚对方的人。" },
+      { type: "fox", text: "两个快乐星球的碰撞，火花四射。但也别忘了偶尔坐下来聊点深的。" },
+      { type: "koala", text: "你拉着 TA 看世界，TA 给你最舒服的怀抱。节奏不同步时，各退一步就好。" }
+    ]
+  },
+  koala: {
+    name: "考拉系恋人",
+    sub: "慵懒治愈的安稳陪伴者",
+    keywords: ["慵懒", "治愈", "安稳", "宅系"],
+    color: "#7BA58E", tint: "#EDF3EC",
+    dim: "安稳治愈",
+    attach: "依恋倾向：舒适安全型", lang: "爱的语言：安静的陪伴",
+    desc: [
+      "爱得不紧不慢，舒服最重要。你像考拉一样，把「在一起」过成一种恒温的状态：不需要轰轰烈烈，窝在同一个沙发上各干各的，伸手就能碰到 TA，就是最好的日子。你不查岗、不折腾、不作不闹，是关系里最省心的存在。",
+      "你的爱是低功耗的、恒温的、让人放松的。要留意的是：太久的「懒得表达」，可能会让 TA 分不清你是安心，还是不上心。"
+    ],
+    strengths: [
+      "情绪恒温器：不作不闹不内耗，和你在一起血压都变稳",
+      "舒适感满分：总能把平凡日常过出慵懒的幸福感",
+      "零控制欲：给对方充分自由，从不用爱绑架人",
+      "超长待机：一旦认定，就打算赖着过一辈子的那种人"
+    ],
+    blindspots: [
+      "「懒得表达」容易被误读为冷淡或不上心",
+      "怕麻烦，可能回避本该严肃处理的矛盾",
+      "舒适区依赖强，生活少了点新鲜感和仪式感",
+      "低需求不等于没需求，攒太久的需求爆发时自己都吓一跳"
+    ],
+    advice: [
+      { t: "每周一次「主动营业」", d: "主动约一次会、说一句具体的想念。你的一句「我想你了」，杀伤力是别人的十倍。" },
+      { t: "矛盾别用「睡一觉」解决", d: "睡觉能消气，但消不了问题。睡醒后花十分钟把话说开，才是真正的翻篇。" },
+      { t: "偶尔走出舒适区", d: "每季度陪 TA 尝试一件新鲜事。你不需要爱上折腾，只需要让 TA 看到你愿意为 TA 折腾。" },
+      { t: "说出你的「小需求」", d: "你习惯说「都行」，但「都行」久了 TA 会真以为你什么都不要。偶尔点个菜，关系更有滋味。" }
+    ],
+    matches: [
+      { type: "dog", text: "两个稳定器在一起，是最让人放心的组合。记得偶尔给对方制造点小惊喜。" },
+      { type: "cat", text: "你们都需要自己的空间，相处轻松。但也别客气到生疏，多分享点日常。" },
+      { type: "deer", text: "TA 的敏感需要回应，你的沉默会让 TA 想多。多给几个确定的抱抱和肯定的答复。" },
+      { type: "fox", text: "TA 负责制造热闹，你负责提供港湾。别嫌 TA 吵，TA 也别催你快。" },
+      { type: "bunny", text: "TA 电量满格，你电量省流。让 TA 拉着你玩，你教 TA 慢下来，互相治愈。" }
+    ]
+  }
+};
+
+/* =====================================================
+   16 道情境题（每个选项对应一个人格维度）
+===================================================== */
+const QUESTIONS = [
+  {
+    q: "恋人两小时没回消息，你心里最真实的想法是？",
+    options: [
+      { text: "有点担心，忍不住反复点开对话框看", type: "deer" },
+      { text: "正好，我先忙自己的事，各干各的", type: "cat" },
+      { text: "TA 忙完自然会回，没什么好担心的", type: "dog" },
+      { text: "直接发条语音调侃：「被外星人抓走了？」", type: "fox" },
+      { text: "等不了，直接打个语音电话过去问问", type: "bunny" },
+      { text: "翻个身继续刷剧，TA 爱回不回，困了先睡", type: "koala" }
+    ]
+  },
+  {
+    q: "周末约会，你更希望怎么安排？",
+    options: [
+      { text: "一起窝在家做顿饭、看部老电影", type: "dog" },
+      { text: "各自出门和朋友玩，晚上再分享趣事", type: "cat" },
+      { text: "去没逛过的新展、新餐厅，最好有点小惊喜", type: "fox" },
+      { text: "计划不用隆重，但一定要提前定好，临时变卦我会心慌", type: "deer" },
+      { text: "拉着 TA 去游乐园、电玩城，蹦蹦跳跳玩一整天", type: "bunny" },
+      { text: "点好外卖窝在沙发上，抱着 TA 睡个午觉就是完美周末", type: "koala" }
+    ]
+  },
+  {
+    q: "在你看来，恋爱中最重要的东西是？",
+    options: [
+      { text: "信任和稳定，细水长流才是真", type: "dog" },
+      { text: "独立和空间，再亲密也要先是自己", type: "cat" },
+      { text: "新鲜感和心动，不想让感情变成例行公事", type: "fox" },
+      { text: "被在乎的感觉，希望随时能确认对方的心意", type: "deer" },
+      { text: "开心！谈恋爱就是要每天哈哈哈哈", type: "bunny" },
+      { text: "舒服和松弛——在一起不用端着、不用费劲", type: "koala" }
+    ]
+  },
+  {
+    q: "和恋人吵架之后，你通常的做法是？",
+    options: [
+      { text: "主动找 TA 和好，吵架归吵架，日子还要一起过", type: "dog" },
+      { text: "先自己冷静一会儿，想清楚了再谈", type: "cat" },
+      { text: "用玩笑和撒娇把气氛缓和掉，不太喜欢正面对峙", type: "fox" },
+      { text: "表面平静，内心反复回想 TA 说过的每句话", type: "deer" },
+      { text: "吵完三分钟就忘了，凑过去求抱抱和好", type: "bunny" },
+      { text: "不想吵也没力气吵，先睡一觉再说", type: "koala" }
+    ]
+  },
+  {
+    q: "恋人和异性朋友单独吃饭，你的态度是？",
+    options: [
+      { text: "可以接受，信任是底线，但希望 TA 主动跟我说", type: "dog" },
+      { text: "完全 OK，我自己也有异性朋友", type: "cat" },
+      { text: "嘴上说没事，会忍不住旁敲侧击打听细节", type: "fox" },
+      { text: "会不安，希望 TA 能多考虑一下我的感受", type: "deer" },
+      { text: "嘴上说没事，转头就问出八百个细节", type: "bunny" },
+      { text: "懒得管……哦不，是完全信任，反正 TA 会回来给我带饭", type: "koala" }
+    ]
+  },
+  {
+    q: "你理想中的「黏人程度」是？",
+    options: [
+      { text: "每天都要有交流，哪怕只是分享日常小事", type: "deer" },
+      { text: "高质量陪伴就好，不需要时刻在线", type: "dog" },
+      { text: "各自精彩，想 TA 了再约，距离产生美", type: "cat" },
+      { text: "热恋期天天见，但要一直有趣才不会腻", type: "fox" },
+      { text: "天天黏在一起才开心，分开一小时就开始想", type: "bunny" },
+      { text: "在同一个空间各干各的，伸手就能碰到就好", type: "koala" }
+    ]
+  },
+  {
+    q: "恋爱中的你，表达爱意的方式更像？",
+    options: [
+      { text: "记住 TA 说过的小事，默默把一切安排好", type: "dog" },
+      { text: "嘴上不饶人，但关键时刻永远在场", type: "cat" },
+      { text: "大方直球，喜欢就要说出口、秀出来", type: "fox" },
+      { text: "写小作文、发长消息，用文字传递心意", type: "deer" },
+      { text: "每天说一百遍「爱你」，蹦蹦跳跳地撒娇", type: "bunny" },
+      { text: "把好吃的留给 TA，一起躺着就是最大的浪漫", type: "koala" }
+    ]
+  },
+  {
+    q: "恋人情绪低落的时候，你会？",
+    options: [
+      { text: "安静陪着 TA，递纸巾、倒热水，需要我随时都在", type: "dog" },
+      { text: "帮 TA 分析问题出在哪，给出解决方案", type: "cat" },
+      { text: "讲段子逗 TA 笑，带 TA 出去散心", type: "fox" },
+      { text: "比 TA 还着急，恨不得替 TA 难受", type: "deer" },
+      { text: "使出浑身解数逗 TA 开心，不笑不罢休", type: "bunny" },
+      { text: "什么也不说，张开胳膊把 TA 圈进怀里", type: "koala" }
+    ]
+  },
+  {
+    q: "聊到「未来规划」这类话题时，你的态度是？",
+    options: [
+      { text: "很愿意聊，认真规划有 TA 的未来", type: "dog" },
+      { text: "走一步看一步，缘分到了自然会有答案", type: "cat" },
+      { text: "计划赶不上变化，先把当下过甜再说", type: "fox" },
+      { text: "很想聊，但总怕听到和预想不一样的答案", type: "deer" },
+      { text: "已经开始脑补婚礼去哪办、蜜月去哪玩了", type: "bunny" },
+      { text: "想到买房结婚就觉得累……先让我躺会儿", type: "koala" }
+    ]
+  },
+  {
+    q: "恋爱刚确立关系时，你的状态更接近？",
+    options: [
+      { text: "认定了就一心一意对 TA 好", type: "dog" },
+      { text: "保持观察，慢热，需要时间确认感觉", type: "cat" },
+      { text: "心跳加速、小鹿乱撞，天天都想见 TA", type: "fox" },
+      { text: "一边心动一边犯嘀咕：「TA 是认真的吗？」", type: "deer" },
+      { text: "开心到原地转圈，马上发朋友圈官宣", type: "bunny" },
+      { text: "心里踏实了——终于有个固定的抱抱搭子了", type: "koala" }
+    ]
+  },
+  {
+    q: "长期关系进入平淡期时，你会？",
+    options: [
+      { text: "平淡也是幸福，学着在柴米油盐里找甜", type: "dog" },
+      { text: "正好各自充电，平淡期是我的舒适区", type: "cat" },
+      { text: "主动制造惊喜：旅行、仪式感、新玩法", type: "fox" },
+      { text: "有点慌，忍不住想「TA 是不是不爱我了」", type: "deer" },
+      { text: "拉着 TA 解锁新游戏新花样，快乐不能停", type: "bunny" },
+      { text: "平淡才好，我就喜欢这种不用费劲的日子", type: "koala" }
+    ]
+  },
+  {
+    q: "恋爱里你的安全感，主要来源于？",
+    options: [
+      { text: "对彼此的信任和共同的承诺", type: "dog" },
+      { text: "自己的实力和生活，爱情只是加分项", type: "cat" },
+      { text: "两个人之间持续的火花和吸引力", type: "fox" },
+      { text: "对方明确的表达和及时的回应", type: "deer" },
+      { text: "每天都能确认「TA 还像以前一样喜欢我」", type: "bunny" },
+      { text: "一个稳定、舒服、不会散的家", type: "koala" }
+    ]
+  },
+  {
+    q: "关于「随时掌握 TA 的行踪」，你的真实想法是？",
+    options: [
+      { text: "希望随时知道 TA 在哪、和谁在一起，不然就会不安", type: "deer" },
+      { text: "不需要查岗，但 TA 主动报备会让我特别安心", type: "dog" },
+      { text: "完全不需要，TA 的人生是 TA 的", type: "cat" },
+      { text: "嘴上不问，但会旁敲侧击把信息都套出来", type: "fox" },
+      { text: "走哪都想跟着，TA 出门我就想当挂件", type: "bunny" },
+      { text: "不想管，知道 TA 晚上会回家睡觉就行", type: "koala" }
+    ]
+  },
+  {
+    q: "TA 和一位异性朋友聊得火热，还互发搞笑视频，你会？",
+    options: [
+      { text: "心里发酸，忍不住追问「你们怎么认识的」", type: "deer" },
+      { text: "有点不舒服，但相信 TA 有自己的分寸", type: "dog" },
+      { text: "无所谓，我没兴趣监控 TA 的社交", type: "cat" },
+      { text: "打不过就加入——我也凑过去一起聊，看谁更懂 TA", type: "fox" },
+      { text: "立刻挤进对话：「带我一个！我也要看！」", type: "bunny" },
+      { text: "聊完记得回来抱我就行", type: "koala" }
+    ]
+  },
+  {
+    q: "你希望 TA 在朋友圈公开你们的恋情吗？",
+    options: [
+      { text: "必须公开，最好置顶合照，让所有人知道 TA 有主了", type: "deer" },
+      { text: "不勉强，但 TA 主动公开的那一刻我会特别开心", type: "dog" },
+      { text: "无所谓，感情是我们俩的事，不需要观众", type: "cat" },
+      { text: "公开就得有排面——要么不秀，要么秀得惊艳全场", type: "fox" },
+      { text: "我先发！九宫格甜蜜合照，一天三条不带重样", type: "bunny" },
+      { text: "公开不公开都行，反正我懒得分组", type: "koala" }
+    ]
+  },
+  {
+    q: "TA 去洗澡了，TA 的手机在桌上突然亮了，你会？",
+    options: [
+      { text: "心跳加速，手已经伸出去了……看一眼应该没关系吧", type: "deer" },
+      { text: "忍住不看，信任是从管住自己开始的", type: "dog" },
+      { text: "看都懒得看，真的不感兴趣", type: "cat" },
+      { text: "理直气壮地拿给 TA：「有人找你」，顺便瞟一眼是谁", type: "fox" },
+      { text: "直接喊「TA！你手机响了！」然后凑过去一起看", type: "bunny" },
+      { text: "懒得动，等 TA 出来自己看", type: "koala" }
+    ]
+  }
+];
+
+const TYPE_KEYS = ["dog", "cat", "deer", "fox", "bunny", "koala"];
+const LETTERS = ["A", "B", "C", "D", "E", "F"];
+
+/* =====================================================
+   状态与逻辑
+===================================================== */
+let quiz = [];
+let answers = [];
+let current = 0;
+let advanceTimer = null;
+
+/* ---------- 洗牌：每次开始/重新测试时，题目顺序与选项顺序随机 ---------- */
+function shuffle(arr) {
+  const a = arr.slice();
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    const t = a[i]; a[i] = a[j]; a[j] = t;
+  }
+  return a;
+}
+function buildQuiz() {
+  quiz = shuffle(QUESTIONS).map(q => ({ q: q.q, options: shuffle(q.options) }));
+  answers = new Array(quiz.length).fill(null);
+  current = 0;
+}
+
+const $ = (id) => document.getElementById(id);
+
+function showScreen(id) {
+  document.querySelectorAll(".screen").forEach(s => s.classList.remove("active"));
+  $(id).classList.add("active");
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+function showToast(msg) {
+  const t = $("toast");
+  t.textContent = msg;
+  t.classList.add("show");
+  clearTimeout(t._timer);
+  t._timer = setTimeout(() => t.classList.remove("show"), 2200);
+}
+
+/* ---------- 答题页渲染 ---------- */
+function renderDots() {
+  const box = $("dots");
+  box.innerHTML = "";
+  quiz.forEach((_, i) => {
+    const d = document.createElement("span");
+    d.className = "dot" + (answers[i] !== null ? " answered" : "") + (i === current ? " current" : "");
+    d.title = "第 " + (i + 1) + " 题";
+    d.addEventListener("click", () => { current = i; renderQuestion(false); });
+    box.appendChild(d);
+  });
+}
+
+function updateProgress() {
+  const answered = answers.filter(a => a !== null).length;
+  $("progress-text").textContent = (current + 1) + " / " + quiz.length;
+  $("answered-text").textContent = "已答 " + answered;
+  $("progress-fill").style.width = (answered / quiz.length * 100) + "%";
+  $("btn-prev").disabled = (current === 0);
+  $("btn-next").textContent = (current === quiz.length - 1) ? "查看结果" : "下一题";
+  renderDots();
+}
+
+function renderQuestion(forward = true) {
+  const q = quiz[current];
+  const html = `
+    <div class="q-card ${forward ? "" : "back"}">
+      <p class="q-index">QUESTION ${current + 1}</p>
+      <h2 class="q-text">${q.q}</h2>
+      <div class="options">
+        ${q.options.map((o, i) => `
+          <div class="option ${answers[current] === i ? "selected" : ""}" data-i="${i}" role="button" tabindex="0">
+            <span class="option-letter">${LETTERS[i]}</span>
+            <span class="option-text">${o.text}</span>
+            <svg class="option-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5.5 5.5L20 6.5"/></svg>
+          </div>
+        `).join("")}
+      </div>
+    </div>`;
+  $("q-container").innerHTML = html;
+  $("q-container").querySelectorAll(".option").forEach(el => {
+    el.addEventListener("click", () => selectOption(parseInt(el.dataset.i)));
+    el.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); selectOption(parseInt(el.dataset.i)); }
+    });
+  });
+  updateProgress();
+}
+
+function selectOption(i) {
+  clearTimeout(advanceTimer);
+  answers[current] = i;
+  // 立即刷新选中态
+  $("q-container").querySelectorAll(".option").forEach(el => {
+    el.classList.toggle("selected", parseInt(el.dataset.i) === i);
+  });
+  updateProgress();
+  // 自动进入下一题（最后一题不跳）
+  if (current < quiz.length - 1) {
+    advanceTimer = setTimeout(() => { current++; renderQuestion(true); }, 320);
+  }
+}
+
+function goNext() {
+  if (answers[current] === null) {
+    showToast("这道题还没有选择答案哦");
+    const card = $("q-container").querySelector(".q-card");
+    card.classList.remove("shake");
+    void card.offsetWidth;
+    card.classList.add("shake");
+    return;
+  }
+  if (current < quiz.length - 1) {
+    clearTimeout(advanceTimer);
+    current++;
+    renderQuestion(true);
+  } else {
+    finishQuiz();
+  }
+}
+
+function goPrev() {
+  if (current === 0) return;
+  clearTimeout(advanceTimer);
+  current--;
+  renderQuestion(false);
+}
+
+function finishQuiz() {
+  const missing = [];
+  answers.forEach((a, i) => { if (a === null) missing.push(i); });
+  if (missing.length > 0) {
+    showToast("还有 " + missing.length + " 道题未作答，已为你跳转");
+    current = missing[0];
+    renderQuestion(true);
+    const card = $("q-container").querySelector(".q-card");
+    card.classList.remove("shake");
+    void card.offsetWidth;
+    card.classList.add("shake");
+    return;
+  }
+  renderResult();
+  showScreen("screen-result");
+}
+
+/* ---------- 结果计算与渲染 ---------- */
+function computeScores() {
+  const counts = {};
+  TYPE_KEYS.forEach(k => counts[k] = 0);
+  answers.forEach((a, i) => { counts[quiz[i].options[a].type]++; });
+  return counts;
+}
+
+function renderResult() {
+  const counts = computeScores();
+  const total = quiz.length;
+  const sorted = [...TYPE_KEYS].sort((a, b) => counts[b] - counts[a]);
+  const primary = sorted[0];
+  const second = sorted[1];
+  const T = TYPES[primary];
+  const tied = counts[primary] === counts[second];
+
+  const pct = (k) => Math.round(counts[k] / total * 100);
+
+  const barRows = TYPE_KEYS.map(k => {
+    const t = TYPES[k];
+    return `
+      <div class="score-item">
+        <div class="score-top">
+          <span class="score-ani">${SVGS[k]}</span>
+          <span class="score-name" style="color:${t.color}">${t.name} <span class="score-dim">· ${t.dim}</span></span>
+          <span class="score-pct" style="color:${t.color}">${pct(k)}%</span>
+        </div>
+        <div class="bar-track"><div class="bar-fill" data-w="${pct(k)}" style="background:linear-gradient(90deg,${t.color}BB,${t.color})"></div></div>
+      </div>`;
+  }).join("");
+
+  const strengthItems = T.strengths.map(s => `
+    <div class="list-item"><span class="dotmark" style="background:${T.color}"></span><span>${s}</span></div>`).join("");
+
+  const blindItems = T.blindspots.map(s => `
+    <div class="list-item"><span class="dotmark" style="background:#C9B4BC"></span><span>${s}</span></div>`).join("");
+
+  const adviceItems = T.advice.map((a, i) => `
+    <div class="advice-item">
+      <span class="advice-num" style="background:linear-gradient(135deg,${T.color}CC,${T.color})">${i + 1}</span>
+      <div><p class="advice-t">${a.t}</p><p class="advice-d">${a.d}</p></div>
+    </div>`).join("");
+
+  const matchCards = T.matches.map(m => {
+    const mt = TYPES[m.type];
+    return `
+      <div class="match-card">
+        <span class="match-ani" style="background:${mt.tint}">${SVGS[m.type]}</span>
+        <div><p class="match-name" style="color:${mt.color}">遇到${mt.name}</p><p class="match-text">${m.text}</p></div>
+      </div>`;
+  }).join("");
+
+  const tieNote = tied
+    ? `你在 <b>${T.name}</b> 和 <b>${TYPES[second].name}</b> 之间相当均衡（各 ${counts[primary]} 题），本次按 ${T.name} 呈现结果——你可能是兼具两种气质的「混血体质」。`
+    : `你的第二倾向是 <b>${TYPES[second].name}</b>（${pct(second)}%）。当环境或关系阶段变化时，你也会自然流露出这部分特质。`;
+
+  $("result-card").innerHTML = `
+    <div class="result-hero">
+      <div class="result-ani" style="background:${T.tint}">${SVGS[primary]}</div>
+      <p class="result-label">你 的 恋 爱 人 格 是</p>
+      <h2 class="result-name" style="color:${T.color}">${T.name}</h2>
+      <p class="result-sub">${T.sub} · ${T.attach} · ${T.lang}</p>
+      <div class="kw-row">${T.keywords.map(k => `<span class="kw" style="background:${T.tint};color:${T.color}">${k}</span>`).join("")}</div>
+    </div>
+
+    <div class="result-section">
+      <div class="section-title">
+        <svg viewBox="0 0 24 24" fill="none" stroke="${T.color}" stroke-width="2.4" stroke-linecap="round"><path d="M4 19V10M10 19V5M16 19v-7M22 19h-2"/><path d="M2 19h20"/></svg>
+        人格维度分析
+      </div>
+      <div class="score-row">${barRows}</div>
+    </div>
+
+    <div class="result-section">
+      <div class="section-title">
+        <svg viewBox="0 0 24 24" fill="none" stroke="${T.color}" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7-4.5-9.3-8.5C1 8.6 2.5 5 6 5c2.3 0 3.8 1.3 6 3.7C14.2 6.3 15.7 5 18 5c3.5 0 5 3.6 3.3 6.5C19 15.5 12 20 12 20z"/></svg>
+        恋爱画像
+      </div>
+      <div class="desc-block">${T.desc.map(p => `<p>${p}</p>`).join("")}</div>
+    </div>
+
+    <div class="result-section">
+      <div class="section-title">
+        <svg viewBox="0 0 24 24" fill="none" stroke="${T.color}" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.6 6.3L21 9.3l-4.8 4.3 1.3 6.4L12 16.8 6.5 20l1.3-6.4L3 9.3l6.4-1z"/></svg>
+        你的闪光点
+      </div>
+      <div class="list-block">${strengthItems}</div>
+    </div>
+
+    <div class="result-section">
+      <div class="section-title">
+        <svg viewBox="0 0 24 24" fill="none" stroke="${T.color}" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16.5v.5"/></svg>
+        需要留意的小盲点
+      </div>
+      <div class="list-block">${blindItems}</div>
+    </div>
+
+    <div class="result-section">
+      <div class="section-title">
+        <svg viewBox="0 0 24 24" fill="none" stroke="${T.color}" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.8.6 1.5 1.5 1.5 2.6h4c0-1.1.7-2 1.5-2.6A6 6 0 0 0 12 3z"/></svg>
+        给你的行动建议
+      </div>
+      ${adviceItems}
+    </div>
+
+    <div class="result-section">
+      <div class="section-title">
+        <svg viewBox="0 0 24 24" fill="none" stroke="${T.color}" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 3a5 5 0 0 1 5 5c0 1.4-.6 2.7-1.5 3.6L12 18 4.5 11.6A5 5 0 0 1 8 3c1.6 0 3 .8 4 2 1-1.2 2.4-2 4-2z"/></svg>
+        和其他动物相处指南
+      </div>
+      <div class="match-grid">${matchCards}</div>
+    </div>
+
+    <div class="second-note">${tieNote}</div>
+
+    <div class="result-actions">
+      <button class="btn ghost" id="btn-back-quiz">返回修改答案</button>
+      <button class="btn" id="btn-retest">重新测试</button>
+    </div>
+  `;
+
+  // 延迟触发进度条动画
+  setTimeout(() => {
+    $("result-card").querySelectorAll(".bar-fill").forEach(b => {
+      b.style.width = b.dataset.w + "%";
+    });
+  }, 120);
+
+  $("btn-back-quiz").addEventListener("click", () => {
+    current = 0;
+    renderQuestion(false);
+    showScreen("screen-quiz");
+  });
+  $("btn-retest").addEventListener("click", () => {
+    buildQuiz();
+    renderQuestion(true);
+    showScreen("screen-quiz");
+    showToast("已清空答案并重新打乱顺序，开始新一轮测试");
+  });
+}
+
+/* ---------- 首页动物头像 ---------- */
+function fillHomeAnimals() {
+  TYPE_KEYS.forEach(k => {
+    $("ani-" + k).innerHTML = SVGS[k];
+    $("ani-" + k).title = TYPES[k].name;
+  });
+}
+
+/* ---------- 事件绑定 ---------- */
+$("btn-start").addEventListener("click", () => {
+  buildQuiz();
+  renderQuestion(true);
+  showScreen("screen-quiz");
+});
+$("btn-next").addEventListener("click", goNext);
+$("btn-prev").addEventListener("click", goPrev);
+$("btn-quit").addEventListener("click", () => {
+  const answered = answers.filter(a => a !== null).length;
+  if (answered > 0 && answered < quiz.length) {
+    showToast("回到首页不会保存进度，重新开始将清空答案");
+  }
+  showScreen("screen-home");
+});
+
+fillHomeAnimals();
+</script>
+</body>
+</html>
