@@ -158,6 +158,11 @@
   .result-name{font-size:32px;font-weight:800;letter-spacing:2px;margin:4px 0 6px}
   .result-sub{font-size:15px;color:var(--sub);margin-bottom:14px}
   .kw-row{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:6px}
+  .result-quote{font-size:17px;line-height:1.7;font-weight:600;color:var(--ink);
+    background:var(--card2);border-left:4px solid var(--accent);border-radius:12px;
+    padding:12px 16px;margin:14px 4px 2px;letter-spacing:.5px}
+  .result-quote::before{content:"爱情宣言";display:block;font-size:12px;font-weight:700;
+    letter-spacing:2px;color:var(--accent);opacity:.7;margin-bottom:4px}
   .kw{
     font-size:13px;font-weight:700;padding:5px 14px;border-radius:999px;
   }
@@ -233,6 +238,77 @@
     .home-animals .ani svg{width:48px;height:48px}
     .nav-btn{padding:12px 24px;font-size:14px}
   }
+
+  /* =====================================================
+     病娇模式（占有欲透视）主题
+  ===================================================== */
+  body.yandere{
+    background:radial-gradient(120% 90% at 50% -10%,#3a0d16 0%,#220810 45%,#120409 100%);
+    color:#f6e3e8;
+  }
+  body.yandere .blob{opacity:.22;filter:blur(80px)}
+  body.yandere .heart-float{color:#7a1626;opacity:.4}
+  body.yandere .card{
+    background:linear-gradient(180deg,#2a0d14 0%,#1c0810 100%);
+    border:1px solid rgba(214,51,76,.45);
+    box-shadow:0 22px 70px rgba(214,51,76,.30),0 2px 12px rgba(0,0,0,.4);
+  }
+  body.yandere .result-label,
+  body.yandere .result-sub,
+  body.yandere .section-title,
+  body.yandere .desc-block,
+  body.yandere .list-item,
+  body.yandere .advice-t,
+  body.yandere .advice-d,
+  body.yandere .match-text,
+  body.yandere .second-note{color:#f0d6dd}
+  body.yandere .result-ani{box-shadow:0 0 0 3px rgba(214,51,76,.5),0 14px 30px rgba(214,51,76,.35)}
+  body.yandere .bar-track{background:rgba(255,255,255,.12)}
+  body.yandere .yandere-btn{background:linear-gradient(135deg,#ff5d7a,#9B1B2E);box-shadow:0 10px 24px rgba(155,27,46,.5)}
+
+  .yandere-banner{
+    display:flex;align-items:center;justify-content:space-between;gap:10px;
+    max-width:660px;margin:0 auto 14px;padding:13px 20px;border-radius:14px;
+    background:linear-gradient(135deg,#9B1B2E,#D6334C);color:#fff;
+    box-shadow:0 12px 30px rgba(155,27,46,.45);font-weight:700;letter-spacing:1px;
+    animation:fadeUp .4s ease both;
+  }
+  .yandere-banner-sub{font-weight:500;opacity:.85;font-size:13px;letter-spacing:1px}
+
+  .yandere-panel{
+    max-width:660px;margin:18px auto 0;padding:24px 22px;border-radius:20px;
+    background:linear-gradient(180deg,#2a0d14 0%,#190710 100%);
+    border:1px solid rgba(214,51,76,.45);
+    box-shadow:0 20px 60px rgba(214,51,76,.28);
+    animation:fadeUp .4s ease both;
+  }
+  .yandere-head{display:flex;align-items:center;gap:16px;margin-bottom:18px}
+  .yandere-emoji{font-size:46px;line-height:1;filter:drop-shadow(0 4px 8px rgba(214,51,76,.5))}
+  .yandere-kicker{margin:0;font-size:12px;letter-spacing:3px;color:#ff8aa0;text-transform:uppercase}
+  .yandere-title{margin:4px 0 2px;font-size:23px;letter-spacing:1px}
+  .yandere-tag{margin:0;font-size:14px;color:#f0c9d2}
+  .yandere-ratio{background:rgba(255,255,255,.05);border-radius:14px;padding:14px 16px;margin-bottom:16px}
+  .yandere-ratio-top{display:flex;justify-content:space-between;align-items:baseline;font-size:14px;color:#f0d6dd}
+  .yandere-ratio-num{font-size:26px;font-weight:800}
+  .yandere-track{height:12px;border-radius:999px;background:rgba(255,255,255,.12);overflow:hidden;margin:8px 0 6px}
+  .yandere-fill{height:100%;border-radius:999px;width:0;transition:width .8s cubic-bezier(.2,.8,.2,1)}
+  .yandere-ratio-sub{margin:0;font-size:12px;color:#cfa6b0;text-align:right}
+  .yandere-decl{
+    margin:0 0 16px;padding:14px 16px;border-left:3px solid #D6334C;border-radius:0 12px 12px 0;
+    background:rgba(214,51,76,.12);font-size:16px;line-height:1.8;color:#ffe1e7;font-style:italic;
+  }
+  .yandere-advice{background:rgba(255,255,255,.05);border-radius:14px;padding:14px 16px}
+  .yandere-advice-label{display:inline-block;font-size:12px;letter-spacing:2px;color:#ff8aa0;margin-bottom:6px}
+  .yandere-advice p{margin:0;font-size:14px;line-height:1.8;color:#eccdd4}
+
+  .yandere-stamp{
+    display:none;position:absolute;top:8px;right:8px;
+    padding:4px 12px;border-radius:999px;font-size:14px;font-weight:800;letter-spacing:3px;
+    color:#fff;background:linear-gradient(135deg,#ff5d7a,#9B1B2E);
+    box-shadow:0 6px 16px rgba(155,27,46,.5);transform:rotate(-12deg);
+  }
+  body.yandere .yandere-stamp{display:block}
+  .result-ani{position:relative}
 </style>
 </head>
 <body data-page-node-id="TrWgB1XrRVUePC177PNZvk">
@@ -275,7 +351,7 @@
         在爱情里，你更像忠诚憨厚的<b data-page-node-id="kzdebNwDNzyzUPfAqKsVfk">忠犬</b>、清醒独立的<b data-page-node-id="rRzjUvyd4ip7cfUYs7ELK0">猫咪</b>、
         敏感细腻的<b data-page-node-id="dTwk0fl29N3KDRbRsdChFQ">小鹿</b>、热情鲜活的<b data-page-node-id="luSvtilvQqmXy8cwHDON3M">狐狸</b>，
         活泼黏人的<b>兔子</b>，还是慵懒治愈的<b>考拉</b>？<br data-page-node-id="u0XDxaDxEjttUgmrDpuDin">
-        16 道情境题（含占有欲特辑），看见你在亲密关系中最真实的样子。
+        16 道恋爱观情境题，看看你在动物恋人里究竟属于哪一款。
       </p>
       <div class="home-start" data-page-node-id="QsHncDbuPgCnS6jf8QdQX8">
         <button class="btn" id="btn-start" data-page-node-id="I5oaX37N5ziBFFRysya1UG">开 始 测 试</button>
@@ -315,7 +391,12 @@
 
   <!-- ============ 结果页 ============ -->
   <section class="screen" id="screen-result" data-page-node-id="KJgXg0TZLEJxomxGG0s31l">
+    <div class="yandere-banner" id="yandere-banner" style="display:none">
+      <span>⚠️ 病娇模式已开启</span>
+      <span class="yandere-banner-sub">占有欲透视报告 · 仅供娱乐</span>
+    </div>
     <div class="card" id="result-card" data-page-node-id="dmeAx8DmTmmAZ9cb3JBWM4"></div>
+    <div class="yandere-panel" id="yandere-panel" style="display:none"></div>
     <p class="disclaimer" data-page-node-id="oWkMzuC0TfPow6n71pSgs9">
       本结果由你的作答实时计算生成，非随机抽取。<br data-page-node-id="xryKx97YG39p0XD5YP5lmo">
       原创趣味自评，仅供娱乐与自我探索参考，不构成专业心理诊断。
@@ -508,6 +589,7 @@ const TYPES = {
   cat: {
     name: "猫系恋人",
     sub: "独立清醒的自我掌控者",
+    declaration: "我不说想你，但我发的每一条「在干嘛」都是想你",
     keywords: ["独立", "慢热", "清醒", "有格调"],
     color: "#9C8FC6", tint: "#EFEAF9",
     dim: "独立自洽",
@@ -656,6 +738,7 @@ const TYPES = {
   koala: {
     name: "考拉系恋人",
     sub: "慵懒治愈的安稳陪伴者",
+    declaration: "我不爱吃醋，但你要是走了，我会很难过",
     keywords: ["慵懒", "治愈", "安稳", "宅系"],
     color: "#7BA58E", tint: "#EDF3EC",
     dim: "安稳治愈",
@@ -697,182 +780,204 @@ const TYPES = {
 ===================================================== */
 const QUESTIONS = [
   {
-    q: "恋人两小时没回消息，你心里最真实的想法是？",
+    q: "你觉得爱情里最让人上头的是？",
     options: [
-      { text: "越想越慌：TA 是不是噶了去找白月光了？", type: "deer" },
-      { text: "正好，我先忙自己的事，各干各的", type: "cat" },
-      { text: "TA 忙完自然会回，没什么好担心的", type: "dog" },
-      { text: "直接发条语音调侃：「被外星人抓走了？」", type: "fox" },
-      { text: "是不是有外遇了？不行，我现在就要问清楚", type: "bunny" },
-      { text: "翻个身继续刷剧，TA 爱回不回，困了先睡", type: "koala" }
+      { text: "被一个人坚定地选择，谁抢都不给", type: "dog" },
+      { text: "明明谁都没说破，却知道对方满眼都是我", type: "cat" },
+      { text: "一见到对方就心跳加速，像做贼一样", type: "deer" },
+      { text: "暧昧拉满的那段日子，天天都在过招", type: "fox" }
     ]
   },
   {
-    q: "周末约会，你更希望怎么安排？",
+    q: "你理想中的另一半是？",
     options: [
-      { text: "一起窝在家做顿饭、看部老电影", type: "dog" },
-      { text: "各自出门和朋友玩，晚上再分享趣事", type: "cat" },
-      { text: "去没逛过的新展、新餐厅，最好有点小惊喜", type: "fox" },
-      { text: "计划不用隆重，但一定要提前定好，临时变卦我会心慌", type: "deer" },
-      { text: "拉着 TA 去游乐园、电玩城，蹦蹦跳跳玩一整天", type: "bunny" },
-      { text: "点好外卖窝在沙发上，抱着 TA 睡个午觉就是完美周末", type: "koala" }
+      { text: "眼里只有我，别的异性都是空气", type: "dog", poss: true },
+      { text: "有自己世界的人，但睡前会想起我", type: "cat" },
+      { text: "温柔到能接住我所有情绪的人", type: "bunny" },
+      { text: "不急不躁，两个人躺着发呆也不尴尬", type: "koala" }
     ]
   },
   {
-    q: "在你看来，恋爱中最重要的东西是？",
+    q: "恋爱里你最怕的是？",
     options: [
-      { text: "信任和稳定，细水长流才是真", type: "dog" },
-      { text: "独立和空间，再亲密也要先是自己", type: "cat" },
-      { text: "新鲜感和心动，不想让感情变成例行公事", type: "fox" },
-      { text: "被在乎的感觉，希望随时能确认对方的心意", type: "deer" },
-      { text: "开心！谈恋爱就是要每天哈哈哈哈", type: "bunny" },
-      { text: "舒服和松弛——在一起不用端着、不用费劲", type: "koala" }
+      { text: "对方突然冷淡，我找不到人了", type: "dog" },
+      { text: "被看透，所有的傲娇都无处可藏", type: "cat" },
+      { text: "我的喜欢被当成玩笑", type: "deer" },
+      { text: "这段关系让我太累，连装都懒得装", type: "koala" }
     ]
   },
   {
-    q: "和恋人吵架之后，你通常的做法是？",
+    q: "约会完回家路上，你会？",
     options: [
-      { text: "主动找 TA 和好，吵架归吵架，日子还要一起过", type: "dog" },
-      { text: "先自己冷静一会儿，想清楚了再谈", type: "cat" },
-      { text: "用玩笑和撒娇把气氛缓和掉，不太喜欢正面对峙", type: "fox" },
-      { text: "表面平静，内心反复回想 TA 说过的每句话", type: "deer" },
-      { text: "吵完三分钟就忘了，凑过去求抱抱和好", type: "bunny" },
-      { text: "不想吵也没力气吵，先睡一觉再说", type: "koala" }
+      { text: "一路发消息：「到家没」「想你」「明天见」", type: "dog" },
+      { text: "一句话不说，但已经在看下次见面的日子", type: "cat" },
+      { text: "在车上把今天的对话复盘了三遍，脸还是红的", type: "deer" },
+      { text: "回家倒头就睡，梦里继续约", type: "koala" }
     ]
   },
   {
-    q: "恋人和异性朋友单独吃饭，你的态度是？",
+    q: "你觉得「占有」的正确姿势是？",
     options: [
-      { text: "可以接受，信任是底线，但希望 TA 主动跟我说", type: "dog" },
-      { text: "完全 OK，我自己也有异性朋友", type: "cat" },
-      { text: "嘴上说没事，会忍不住旁敲侧击打听细节", type: "fox" },
-      { text: "会不安，希望 TA 能多考虑一下我的感受", type: "deer" },
-      { text: "嘴上说没事，转头就问出八百个细节", type: "bunny" },
-      { text: "懒得管……哦不，是完全信任，反正 TA 会回来给我带饭", type: "koala" }
+      { text: "直接宣布主权，让所有人知道 TA 是我的", type: "dog", poss: true },
+      { text: "不动声色，但 TA 身边的位置只能是我", type: "fox", poss: true },
+      { text: "小声说「你别看别人」，说完自己先脸红", type: "deer", poss: true },
+      { text: "默默把 TA 的备注改成「我的」，谁也不知道", type: "bunny", poss: true }
     ]
   },
   {
-    q: "你理想中的「黏人程度」是？",
+    q: "朋友说「你对象好像跟别人走得很近」，你会？",
     options: [
-      { text: "每天都要有交流，哪怕只是分享日常小事", type: "deer" },
-      { text: "高质量陪伴就好，不需要时刻在线", type: "dog" },
-      { text: "各自精彩，想 TA 了再约，距离产生美", type: "cat" },
-      { text: "热恋期天天见，但要一直有趣才不会腻", type: "fox" },
-      { text: "天天黏在一起才开心，分开一小时就开始想", type: "bunny" },
-      { text: "在同一个空间各干各的，伸手就能碰到就好", type: "koala" }
+      { text: "立刻问清楚，当面把话说开", type: "dog" },
+      { text: "表面淡定，心里已经开始写推理小说", type: "cat" },
+      { text: "当场愣住，回家偷偷哭", type: "deer" },
+      { text: "打个哈欠：「哦，然后呢？」", type: "koala" }
     ]
   },
   {
-    q: "恋爱中的你，表达爱意的方式更像？",
+    q: "你什么时候觉得「就是 TA 了」？",
     options: [
-      { text: "记住 TA 说过的小事，默默把一切安排好", type: "dog" },
-      { text: "嘴上不饶人，但关键时刻永远在场", type: "cat" },
-      { text: "大方直球，喜欢就要说出口、秀出来", type: "fox" },
-      { text: "写小作文、发长消息，用文字传递心意", type: "deer" },
-      { text: "每天说一百遍「爱你」，蹦蹦跳跳地撒娇", type: "bunny" },
-      { text: "把好吃的留给 TA，一起躺着就是最大的浪漫", type: "koala" }
+      { text: "TA 生病我半夜送药，心疼到不行的时候", type: "dog" },
+      { text: "TA 说「随便」，却记得我不吃香菜的时候", type: "cat" },
+      { text: "TA 摸我头的那一刻", type: "bunny" },
+      { text: "跟 TA 在一起，我居然不想玩手机的时候", type: "koala" }
     ]
   },
   {
-    q: "恋人情绪低落的时候，你会？",
+    q: "对象突然变得很忙，你会？",
     options: [
-      { text: "安静陪着 TA，递纸巾、倒热水，需要我随时都在", type: "dog" },
-      { text: "帮 TA 分析问题出在哪，给出解决方案", type: "cat" },
-      { text: "讲段子逗 TA 笑，带 TA 出去散心", type: "fox" },
-      { text: "比 TA 还着急，恨不得替 TA 难受", type: "deer" },
-      { text: "使出浑身解数逗 TA 开心，不笑不罢休", type: "bunny" },
-      { text: "什么也不说，张开胳膊把 TA 圈进怀里", type: "koala" }
+      { text: "把 TA 的日程表背下来，见缝插针找 TA", type: "dog", poss: true },
+      { text: "假装不在意，其实每天守着手机", type: "cat" },
+      { text: "自己脑补八百集剧情，越想越慌", type: "bunny" },
+      { text: "正好，我也要追剧打游戏，各自安好", type: "koala" }
     ]
   },
   {
-    q: "聊到「未来规划」这类话题时，你的态度是？",
+    q: "你觉得最好的告白是？",
     options: [
-      { text: "很愿意聊，认真规划有 TA 的未来", type: "dog" },
-      { text: "走一步看一步，缘分到了自然会有答案", type: "cat" },
-      { text: "计划赶不上变化，先把当下过甜再说", type: "fox" },
-      { text: "很想聊，但总怕听到和预想不一样的答案", type: "deer" },
-      { text: "已经开始脑补婚礼去哪办、蜜月去哪玩了", type: "bunny" },
-      { text: "想到买房结婚就觉得累……先让我躺会儿", type: "koala" }
+      { text: "当着所有人的面说「TA 是我的」", type: "dog", poss: true },
+      { text: "写张纸条：「我好像有点喜欢你，别告诉别人」", type: "cat" },
+      { text: "送 TA 一束花，花里夹着不敢说出口的话", type: "deer" },
+      { text: "什么都不说，但天天给 TA 带早饭", type: "fox" }
     ]
   },
   {
-    q: "恋爱刚确立关系时，你的状态更接近？",
+    q: "对象问你「你有多喜欢我？」，你会？",
     options: [
-      { text: "认定了就一心一意对 TA 好", type: "dog" },
-      { text: "保持观察，慢热，需要时间确认感觉", type: "cat" },
-      { text: "心跳加速、小鹿乱撞，天天都想见 TA", type: "fox" },
-      { text: "一边心动一边犯嘀咕：「TA 是认真的吗？」", type: "deer" },
-      { text: "开心到原地转圈，马上发朋友圈官宣", type: "bunny" },
-      { text: "心里踏实了——终于有个固定的抱抱搭子了", type: "koala" }
+      { text: "「这辈子就你了，问到八十岁也是这个答案」", type: "dog" },
+      { text: "「还行吧」，然后偷偷把这句话设成屏保", type: "cat" },
+      { text: "耳朵红了半天，憋出一句「很喜欢」", type: "deer" },
+      { text: "「比我喜欢的奶茶还多一点」", type: "koala" }
     ]
   },
   {
-    q: "长期关系进入平淡期时，你会？",
+    q: "发现 TA 在跟别人聊得很开心，你会？",
     options: [
-      { text: "平淡也是幸福，学着在柴米油盐里找甜", type: "dog" },
-      { text: "正好各自充电，平淡期是我的舒适区", type: "cat" },
-      { text: "主动制造惊喜：旅行、仪式感、新玩法", type: "fox" },
-      { text: "有点慌，忍不住想「TA 是不是不爱我了」", type: "deer" },
-      { text: "拉着 TA 解锁新游戏新花样，快乐不能停", type: "bunny" },
-      { text: "平淡才好，我就喜欢这种不用费劲的日子", type: "koala" }
+      { text: "走过去挽住 TA 的胳膊：「宝贝，我们走吧」", type: "dog", poss: true },
+      { text: "不打扰，但晚上会问「今天聊的那个是谁呀」", type: "fox" },
+      { text: "躲进厕所，给闺蜜发消息：「我好像要失恋了」", type: "bunny" },
+      { text: "无所谓，聊就聊呗，反正 TA 得回家", type: "koala" }
     ]
   },
   {
-    q: "恋爱里你的安全感，主要来源于？",
+    q: "你想要的恋爱节奏是？",
     options: [
-      { text: "对彼此的信任和共同的承诺", type: "dog" },
-      { text: "自己的实力和生活，爱情只是加分项", type: "cat" },
-      { text: "两个人之间持续的火花和吸引力", type: "fox" },
-      { text: "对方明确的表达和及时的回应", type: "deer" },
-      { text: "每天都能确认「TA 还像以前一样喜欢我」", type: "bunny" },
-      { text: "一个稳定、舒服、不会散的家", type: "koala" }
+      { text: "越快越好，确认关系当晚就想官宣", type: "dog", poss: true },
+      { text: "慢慢来，我要确认 TA 是真的喜欢我", type: "cat" },
+      { text: "等 TA 先迈出那一步，我才敢靠近", type: "deer" },
+      { text: "随便，感觉对了就行", type: "koala" }
     ]
   },
   {
-    q: "关于「随时掌握 TA 的行踪」，你的真实想法是？",
+    q: "对象手机密码你不知道，你会？",
     options: [
-      { text: "希望随时知道 TA 在哪、和谁在一起，不然就会不安", type: "deer" },
-      { text: "不需要查岗，但 TA 主动报备会让我特别安心", type: "dog" },
-      { text: "完全不需要，TA 的人生是 TA 的", type: "cat" },
-      { text: "嘴上不问，但会旁敲侧击把信息都套出来", type: "fox" },
-      { text: "走哪都想跟着，TA 出门我就想当挂件", type: "bunny" },
-      { text: "不想管，知道 TA 晚上会回家睡觉就行", type: "koala" }
+      { text: "直接问：「密码多少，我要查岗」", type: "dog", poss: true },
+      { text: "不问，但趁 TA 睡着偷偷试自己的生日", type: "cat", poss: true },
+      { text: "不敢问也不敢试，怕看到不该看的", type: "bunny" },
+      { text: "不知道更好，知道了我还得天天看", type: "koala" }
     ]
   },
   {
-    q: "TA 和一位异性朋友聊得火热，还互发搞笑视频，你会？",
+    q: "你觉得「安全感」是？",
     options: [
-      { text: "心里发酸，忍不住追问「你们怎么认识的」", type: "deer" },
-      { text: "有点不舒服，但相信 TA 有自己的分寸", type: "dog" },
-      { text: "无所谓，我没兴趣监控 TA 的社交", type: "cat" },
-      { text: "打不过就加入——我也凑过去一起聊，看谁更懂 TA", type: "fox" },
-      { text: "立刻挤进对话：「带我一个！我也要看！」", type: "bunny" },
-      { text: "聊完记得回来抱我就行", type: "koala" }
+      { text: "TA 随时报备，我去哪 TA 都知道", type: "dog", poss: true },
+      { text: "TA 从不让我猜，但我也从不问", type: "cat" },
+      { text: "TA 把我介绍给所有朋友", type: "deer" },
+      { text: "TA 在旁边，我就睡得特别香", type: "koala" }
     ]
   },
   {
-    q: "你希望 TA 在朋友圈公开你们的恋情吗？",
+    q: "如果 TA 忘了回你消息，你会？",
     options: [
-      { text: "必须公开，最好置顶合照，让所有人知道 TA 有主了", type: "deer" },
-      { text: "不勉强，但 TA 主动公开的那一刻我会特别开心", type: "dog" },
-      { text: "无所谓，感情是我们俩的事，不需要观众", type: "cat" },
-      { text: "公开就得有排面——要么不秀，要么秀得惊艳全场", type: "fox" },
-      { text: "我先发！九宫格甜蜜合照，一天三条不带重样", type: "bunny" },
-      { text: "公开不公开都行，反正我懒得分组", type: "koala" }
+      { text: "连环 call，直到接通为止", type: "dog", poss: true },
+      { text: "也故意不回 TA，看谁先沉不住气", type: "cat" },
+      { text: "反复检查是不是自己说错话了", type: "deer" },
+      { text: "哦，那我先睡了", type: "koala" }
     ]
   },
   {
-    q: "TA 去洗澡了，TA 的手机在桌上突然亮了，你会？",
+    q: "最后一题：恋爱的终点是？",
     options: [
-      { text: "心跳加速，手已经伸出去了……看一眼应该没关系吧", type: "deer" },
-      { text: "忍住不看，信任是从管住自己开始的", type: "dog" },
-      { text: "看都懒得看，真的不感兴趣", type: "cat" },
-      { text: "理直气壮地拿给 TA：「有人找你」，顺便瞟一眼是谁", type: "fox" },
-      { text: "直接喊「TA！你手机响了！」然后凑过去一起看", type: "bunny" },
-      { text: "懒得动，等 TA 出来自己看", type: "koala" }
+      { text: "结婚，领证，一辈子", type: "dog" },
+      { text: "不知道，但希望一直是 TA", type: "cat" },
+      { text: "一起变老，还是牵着手", type: "deer" },
+      { text: "一起躺着，直到变成两个小老头老太太", type: "koala" }
     ]
   }
 ];
+
+/* =====================================================
+   病娇 / 占有欲等级（由占有欲选项比例决定）
+===================================================== */
+const YANDERE_LEVELS = [
+  {
+    key: "angel", name: "佛系小天使", emoji: "🕊️", color: "#7BA58E",
+    tag: "占有欲几乎为零，你的爱很松弛",
+    decl: "你自由，我自由，我们都自由——占有欲？那是什么，没听说过。",
+    advice: "健康的松弛感是加分项；只是偶尔也可以让对方知道「我在乎你」，免得 TA 误以为你不在乎。"
+  },
+  {
+    key: "mild", name: "温吞系", emoji: "🍵", color: "#E8A0B0",
+    tag: "占有欲偏低，黏人但克制",
+    decl: "喜欢归喜欢，我的世界不只有 TA 一个人。",
+    advice: "挺舒服的节奏。偶尔流露一点点占有欲，反而会让对方更确定你的心意。"
+  },
+  {
+    key: "mini", name: "微病娇", emoji: "🌸", color: "#E0607E",
+    tag: "有点小醋意，占有欲初现",
+    decl: "你可以和别人玩，但我的位置不能让。",
+    advice: "小醋意是情趣，记得用撒娇代替查岗——既表达了在意，又不让对方窒息。"
+  },
+  {
+    key: "std", name: "标准病娇", emoji: "🔥", color: "#D6334C",
+    tag: "占有欲明显，「你只能是我的」",
+    decl: "认定了你，就想把你锁进我的全世界。别人多看你一眼，我都悄悄记在小本本上。",
+    advice: "热情的占有很动人，但请给彼此留透气口：信任比监控更能留住人。把「查岗」换成「我想你了」，会更甜。"
+  },
+  {
+    key: "dark", name: "黑化病娇", emoji: "🔪", color: "#9B1B2E",
+    tag: "占有欲爆表，拦我都拦不住",
+    decl: "如果你敢逃，我就把全世界都变成只有我们两个人的房间。",
+    advice: "⚠️ 提醒：极端的占有欲在现实里会伤人伤己。这只是在线小测试，真实的爱需要尊重对方的空间与自由。把这份炽热用在「好好宠 TA」上，才最迷人。"
+  }
+];
+
+function computeYandere() {
+  let possCount = 0, possQuestions = 0;
+  quiz.forEach((q, i) => {
+    const a = answers[i];
+    if (a === null || a === undefined) return;
+    if (q.options.some(o => o.poss)) possQuestions++;
+    if (q.options[a] && q.options[a].poss) possCount++;
+  });
+  const ratio = possQuestions ? possCount / possQuestions : 0;
+  let lvl;
+  if (ratio < 0.15) lvl = YANDERE_LEVELS[0];
+  else if (ratio < 0.38) lvl = YANDERE_LEVELS[1];
+  else if (ratio < 0.6) lvl = YANDERE_LEVELS[2];
+  else if (ratio < 0.82) lvl = YANDERE_LEVELS[3];
+  else lvl = YANDERE_LEVELS[4];
+  return { possCount, possQuestions, ratio, lvl };
+}
 
 const TYPE_KEYS = ["dog", "cat", "deer", "fox", "bunny", "koala"];
 const LETTERS = ["A", "B", "C", "D", "E", "F"];
@@ -882,6 +987,7 @@ const LETTERS = ["A", "B", "C", "D", "E", "F"];
 ===================================================== */
 let quiz = [];
 let answers = [];
+let currentResult = null;
 let current = 0;
 let advanceTimer = null;
 
@@ -895,7 +1001,14 @@ function shuffle(arr) {
   return a;
 }
 function buildQuiz() {
-  quiz = shuffle(QUESTIONS).map(q => ({ q: q.q, options: shuffle(q.options) }));
+  // 把「最后一题：恋爱的终点」固定放在最后，其余 15 题随机排序
+  const lastIdx = QUESTIONS.findIndex(q => q.q.startsWith("最后一题"));
+  const pool = QUESTIONS.slice();
+  let lastQ = null;
+  if (lastIdx >= 0) lastQ = pool.splice(lastIdx, 1)[0];
+  const shuffled = shuffle(pool).map(q => ({ q: q.q, options: shuffle(q.options) }));
+  if (lastQ) shuffled.push({ q: lastQ.q, options: shuffle(lastQ.options) });
+  quiz = shuffled;
   answers = new Array(quiz.length).fill(null);
   current = 0;
 }
@@ -1033,10 +1146,15 @@ function renderResult() {
   const counts = computeScores();
   const total = quiz.length;
   const sorted = [...TYPE_KEYS].sort((a, b) => counts[b] - counts[a]);
-  const primary = sorted[0];
-  const second = sorted[1];
+  const top = counts[sorted[0]];
+  const tiedTop = TYPE_KEYS.filter(k => counts[k] === top);
+  const lastType = quiz[total - 1].options[answers[total - 1]].type;
+  let primary = sorted[0];
+  if (tiedTop.length > 1 && tiedTop.includes(lastType)) primary = lastType;
+  const second = sorted.find(k => k !== primary);
   const T = TYPES[primary];
-  const tied = counts[primary] === counts[second];
+  const tied = tiedTop.length > 1;
+  currentResult = { primary, T };
 
   const pct = (k) => Math.round(counts[k] / total * 100);
 
@@ -1075,16 +1193,17 @@ function renderResult() {
   }).join("");
 
   const tieNote = tied
-    ? `你在 <b>${T.name}</b> 和 <b>${TYPES[second].name}</b> 之间相当均衡（各 ${counts[primary]} 题），本次按 ${T.name} 呈现结果——你可能是兼具两种气质的「混血体质」。`
+    ? `你在 <b>${T.name}</b> 与 <b>${TYPES[second].name}</b> 等之间打平（各 ${counts[primary]} 题）。按规则「平票看最后一题」，你的第 16 题更偏向 <b>${TYPES[lastType].name}</b>，故本次呈现为 <b>${T.name}</b>——你大概率是兼具多种气质的「混血体质」。`
     : `你的第二倾向是 <b>${TYPES[second].name}</b>（${pct(second)}%）。当环境或关系阶段变化时，你也会自然流露出这部分特质。`;
 
   $("result-card").innerHTML = `
     <div class="result-hero">
-      <div class="result-ani" style="background:${T.tint}">${SVGS[primary]}</div>
+      <div class="result-ani" style="background:${T.tint}">${SVGS[primary]}<div class="yandere-stamp">病娇</div></div>
       <p class="result-label">你 的 恋 爱 人 格 是</p>
       <h2 class="result-name" style="color:${T.color}">${T.name}</h2>
       <p class="result-sub">${T.sub} · ${T.attach} · ${T.lang}</p>
       <div class="kw-row">${T.keywords.map(k => `<span class="kw" style="background:${T.tint};color:${T.color}">${k}</span>`).join("")}</div>
+      <p class="result-quote">「${T.declaration}」</p>
     </div>
 
     <div class="result-section">
@@ -1139,6 +1258,7 @@ function renderResult() {
 
     <div class="result-actions">
       <button class="btn ghost" id="btn-back-quiz">返回修改答案</button>
+      <button class="btn yandere-btn" id="btn-yandere">🔥 病娇解码 · 占有欲透视</button>
       <button class="btn" id="btn-retest">重新测试</button>
     </div>
   `;
@@ -1151,16 +1271,74 @@ function renderResult() {
   }, 120);
 
   $("btn-back-quiz").addEventListener("click", () => {
+    resetYandere();
     current = 0;
     renderQuestion(false);
     showScreen("screen-quiz");
   });
   $("btn-retest").addEventListener("click", () => {
+    resetYandere();
     buildQuiz();
     renderQuestion(true);
     showScreen("screen-quiz");
     showToast("已清空答案并重新打乱顺序，开始新一轮测试");
   });
+  $("btn-yandere").addEventListener("click", toggleYandere);
+}
+
+function toggleYandere() {
+  if (!currentResult) return;
+  const y = computeYandere();
+  const T = currentResult.T;
+  const on = document.body.classList.toggle("yandere");
+  const panel = $("yandere-panel");
+  const banner = $("yandere-banner");
+  const btn = $("btn-yandere");
+  if (on) {
+    const pctNum = Math.round(y.ratio * 100);
+    banner.style.display = "flex";
+    panel.style.display = "block";
+    panel.innerHTML = `
+      <div class="yandere-head">
+        <span class="yandere-emoji">${y.lvl.emoji}</span>
+        <div>
+          <p class="yandere-kicker">病娇解码 · 占有欲透视</p>
+          <h3 class="yandere-title" style="color:${y.lvl.color}">${T.name} × ${y.lvl.name}</h3>
+          <p class="yandere-tag">${y.lvl.tag}</p>
+        </div>
+      </div>
+      <div class="yandere-ratio">
+        <div class="yandere-ratio-top">
+          <span>占有欲比例</span>
+          <span class="yandere-ratio-num" style="color:${y.lvl.color}">${pctNum}%</span>
+        </div>
+        <div class="yandere-track"><div class="yandere-fill" style="width:0%;background:linear-gradient(90deg,${y.lvl.color}AA,${y.lvl.color})"></div></div>
+        <p class="yandere-ratio-sub">在 ${y.possQuestions} 道含占有欲特质的题目中，你选了 ${y.possCount} 道偏向占有</p>
+      </div>
+      <p class="yandere-decl">「${y.lvl.decl}」</p>
+      <div class="yandere-advice">
+        <span class="yandere-advice-label">给你的小提醒</span>
+        <p>${y.lvl.advice}</p>
+      </div>`;
+    btn.textContent = "退出病娇模式";
+    requestAnimationFrame(() => {
+      const f = panel.querySelector(".yandere-fill");
+      if (f) f.style.width = pctNum + "%";
+    });
+    banner.scrollIntoView({ behavior: "smooth", block: "start" });
+  } else {
+    banner.style.display = "none";
+    panel.style.display = "none";
+    btn.textContent = "🔥 病娇解码 · 占有欲透视";
+  }
+}
+
+function resetYandere() {
+  document.body.classList.remove("yandere");
+  const b = $("yandere-banner"), p = $("yandere-panel"), btn = $("btn-yandere");
+  if (b) b.style.display = "none";
+  if (p) p.style.display = "none";
+  if (btn) btn.textContent = "🔥 病娇解码 · 占有欲透视";
 }
 
 /* ---------- 首页动物头像 ---------- */
@@ -1173,6 +1351,7 @@ function fillHomeAnimals() {
 
 /* ---------- 事件绑定 ---------- */
 $("btn-start").addEventListener("click", () => {
+  resetYandere();
   buildQuiz();
   renderQuestion(true);
   showScreen("screen-quiz");
@@ -1180,6 +1359,7 @@ $("btn-start").addEventListener("click", () => {
 $("btn-next").addEventListener("click", goNext);
 $("btn-prev").addEventListener("click", goPrev);
 $("btn-quit").addEventListener("click", () => {
+  resetYandere();
   const answered = answers.filter(a => a !== null).length;
   if (answered > 0 && answered < quiz.length) {
     showToast("回到首页不会保存进度，重新开始将清空答案");
